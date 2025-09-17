@@ -1,4 +1,4 @@
-<% set_title("Installing VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition for ", product_name_long, "(GCP)") %>
+#  Tanzu Kubernetes Grid Integrated (TKGI) Edition for Greenplum for Kubernetes (GCP)
 
 This release of <%=vars.product_name_long %> can be deployed with TKGI running on Google Cloud Platform (GCP). Management scripts are provided to help you configure required GCP and Kubernetes resources, as well as to deploy a <%=vars.product_name %> cluster.
 

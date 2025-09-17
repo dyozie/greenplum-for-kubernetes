@@ -1,4 +1,4 @@
-<% set_title(product_name_long, "Version", product_version, "Release Notes") %>
+# Greenplum for Kubernetes Versionn 2.3 Release Notes
 
 <%=vars.product_name_long %> 2.3 is a minor release that introduces new features and bug fixes.
 

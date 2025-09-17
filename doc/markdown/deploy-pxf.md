@@ -1,6 +1,4 @@
----
-title: Deploying PXF with Greenplum
----
+# Deploying PXF with Greenplum
 
 This section describes procedures for deploying a <%=vars.product_name %> cluster with the Greenplum platform extension framework (PXF) on Kubernetes.
 

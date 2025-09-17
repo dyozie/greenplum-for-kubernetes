@@ -1,6 +1,4 @@
----
-title: Greenplum PXF Service Properties
----
+# Greenplum PXF Service Properties
 
 This section describes each of the properties that you can define for a `GreenplumPXFService` configuration in the <%=vars.product_name %> manifest file.
 

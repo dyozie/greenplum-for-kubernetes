@@ -1,6 +1,4 @@
----
-title: Deploying or Redeploying a Greenplum Cluster
----
+# Deploying or Redeploying a Greenplum Cluster
 
 This section describes how to use the Greenplum Operator deploy a Greenplum cluster to your Kubernetes system. You can use these instructions either to deploy a brand new cluster (provisioning new, empty Persistent Volume Claims in Kubernetes), or to re-deploy an earlier cluster, re-using existing Persistent Volumes if available.
 

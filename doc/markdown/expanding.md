@@ -1,6 +1,4 @@
----
-title: Expanding a Greenplum Deployment
----
+# Expanding a Greenplum Deployment
 
 To expand a Greenplum cluster, you first use the Greenplum Operator to apply an updated Greenplum cluster configuration that increases the number of segments. The Greenplum Operator automatically creates the new segment pods in Kubernetes and starts a job to run `gpexpand`  and initialize the new segments. You can optionally run manual commands to redistribute data to the new segments, and to remove the `gpexpand` schema that is created during the expansion process.
 

@@ -1,6 +1,4 @@
----
-title: Deleting a Greenplum Cluster
----
+# Deleting a Greenplum Cluster
 
 This section describes how to delete the pods and other resources that are created when you deploy a Greenplum cluster to Kubernetes. Note that deleting these cluster resources does not automatically delete the Persistenv Volume Claims (PVCs) that the cluster used to stored data. This enables you to re-deploy the same cluster at a later time, to pick up where you left off. You can optionally delete the PVCs if you to create an entirely new (empty) cluster at a later time.
 

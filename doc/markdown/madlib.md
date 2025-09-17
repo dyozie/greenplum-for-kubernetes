@@ -1,6 +1,4 @@
----
-title: Using MADlib for Analytics
----
+# Using MADlib for Analytics
 
 This topic describes how to configure the MADlib open-source library for scalable in-database analytics in <%=vars.product_name %>.
 

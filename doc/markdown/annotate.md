@@ -1,6 +1,4 @@
----
-title: Annotating the Greenplum Service
----
+# Annotating the Greenplum Service
 
 Open Policy Agent (OPA) can be used to annotate Greenplum services as they are deployed, in order to implement policy rules. <%=vars.product_name_long %> provides sample files to deploy a mutating webhook. The webhook uses OPA with a Rego policy file to configure Greenplum services to use an AWS internal load balancer. Annotations are added and modified to the Greenplum services as they are deployed to the target namespace.
 

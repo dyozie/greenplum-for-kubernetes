@@ -1,6 +1,4 @@
----
-title: Greenplum Database Properties
----
+# Greenplum Database Properties
 
 This section describes each of the properties that you can define in a Greenplum Operator manifest file.
 

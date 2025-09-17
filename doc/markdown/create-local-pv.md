@@ -1,6 +1,4 @@
----
-title: Creating Local Persistent Volumes for Greenplum
----
+# Creating Local Persistent Volumes for Greenplum
 
 Greenplum requires a Kubernetes Storage Class to use for provisioning Persistent Volumes (PVs) for Greenplum segment pods. This topic describes how to use a storage class that is backed by manually-provisioned Kubernetes [local volumes](https://kubernetes.io/docs/concepts/storage/volumes/#local). A local volume is a disk device, partition, or directory that is directly mounted to a Kubernetes node.
 

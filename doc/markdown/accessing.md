@@ -1,6 +1,4 @@
----
-title: Accessing a Greenplum Cluster in Kubernetes
----
+# Accessing a Greenplum Cluster in Kubernetes
 
 After you deploy a new Greenplum cluster to Kubernetes, you can access the cluster either by executing Greenplum utilities from within Kubernetes, or by using a locally-installed tool, such as `psql`, to access the Greenplum instance running in Kubernetes.
 

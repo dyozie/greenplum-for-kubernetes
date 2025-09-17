@@ -1,6 +1,4 @@
----
-title: VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition running on Google Cloud Platform (GCP)
----
+# VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition running on Google Cloud Platform (GCP)
 
 Follow this procedure to deploy <%=vars.product_name %> to VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition.
 

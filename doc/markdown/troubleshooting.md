@@ -1,6 +1,4 @@
----
-title: Troubleshooting Common Problems
----
+# Troubleshooting Common Problems
 
 ## <a id='debug'></a>Enabling Debug Logging
 

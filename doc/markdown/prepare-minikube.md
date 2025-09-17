@@ -1,6 +1,4 @@
----
-title: Minikube
----
+# Minikube
 
 This section describes the software and configuration necessary to run <%=vars.product_name %> in Minikube. Using Minikube offers a quick way to demonstrate Greenplum on your local system.
 

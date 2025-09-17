@@ -1,6 +1,4 @@
----
-title: Kubernetes Node Configuration
----
+# Kubernetes Node Configuration
 
 This section describes the Linux kernel configuration requirements for each Kubernetes node that is used in a <%=vars.product_name %> cluster.
 

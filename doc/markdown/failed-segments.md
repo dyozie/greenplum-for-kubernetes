@@ -1,6 +1,4 @@
----
-title: Recovering Failed Segments
----
+# Recovering Failed Segments
 
 ## <a id="auto"></a>Automatic Segment Recovery for Mirrorless Deployments
 

@@ -1,6 +1,4 @@
----
-title: Prerequisites
----
+# Prerequisites
 
 The following topics describe how to install and configure the software necessary to run <%=vars.product_name_long %>:
 

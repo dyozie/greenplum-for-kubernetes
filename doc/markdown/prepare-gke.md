@@ -1,6 +1,4 @@
----
-title: Google Kubernetes Engine (GKE) running on Google Cloud Platform (GCP)
----
+# Google Kubernetes Engine (GKE) running on Google Cloud Platform (GCP)
 
 This section describes the requirements for using <%=vars.product_name %> with Google Kubernetes Engine (GKE) deployments.
 

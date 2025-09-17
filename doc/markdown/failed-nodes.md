@@ -1,6 +1,4 @@
----
-title: Recovering Failed Nodes
----
+# Recovering Failed Nodes
 
 Nodes may fail in a Kubernetes cluster for a variety of reasons, including drive failures, memory failures, and network failures. After a node fails, it is up to the Kubernetes cluster operator to recover the node and re-attach it to the cluster. During a node failure event, the Kubernetes cluster is operating in a degraded state, leading to potential resource constraints on a deployed Greenplum cluster. For example, segment pods previously scheduled on the failed node may not get re-scheduled on the remaining nodes. For these reasons, it's important to recover failed nodes in a timely fashion.
 

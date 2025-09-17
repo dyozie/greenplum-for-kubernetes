@@ -1,6 +1,4 @@
----
-title: Master Segment Recovery
----
+# Master Segment Recovery
 When a given Greenplum cluster was created without a standby (`standby=no`) and if the pod `master-0` (the active Greenplum master instance) fails or is deleted, 
 the Greenplum `StatefulSet` restarts the pod. As part of the restart process, master-0 pod will run `gpstart -am && gpstop -ar` to automatically restart the greenplum cluster.
 

@@ -1,4 +1,4 @@
-# Greenplum for Kubernetes Versionn 2.3 Release Notes
+# Greenplum for Kubernetes Version 2.3 Release Notes
 
 {{#include ./product_name_long.md}} 2.3 is a minor release that introduces new features and bug fixes.
 

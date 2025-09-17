@@ -4,7 +4,7 @@ This section describes how to use the Greenplum Operator deploy a Greenplum clus
 
 ## Prerequisites
 
-This procedure requires that you first install the <%=vars.product_name %> docker images and create the Greenplum Operator in your Kubernetes system. See [Installing <%=vars.product_name_long %>](installing.html) for more information.
+This procedure requires that you first install the {{#include ./product_name.md}} docker images and create the Greenplum Operator in your Kubernetes system. See [Installing {{#include ./product_name_long.md}}](installing.html) for more information.
 
 Verify that the Greenplum Operator is installed and running in your system before you continue:
 
@@ -45,7 +45,7 @@ In the above output, gpinstance-1 and gpinstance-2 can be used as namespaces for
 
 ## Procedure
 
-1. Go to the `workspace` subdirectory where you unpacked the <%=vars.product_name %> distribution for Kubernetes:
+1. Go to the `workspace` subdirectory where you unpacked the {{#include ./product_name.md}} distribution for Kubernetes:
 
     ``` bash
     $ cd ./greenplum-for-kubernetes-*/workspace
@@ -83,8 +83,8 @@ In the above output, gpinstance-1 and gpinstance-2 can be used as namespaces for
 
     <br/>If you want to deploy another Greenplum cluster (in a separate Kubernetes namespace), copy the `workspace/my-gp-instance.yaml` or a another deployment manifest file, and edit it as necessary to meet your cluster configuration requirements.
 
-    <%=vars.product_name_long %> provides one additional sample manifest file that you can use as a template (copy to the `/workspace` directory before modifying):
-    - `samples/my-gp-with-pxf-instance.yaml` contains the minimal configuration for a cluster that includes the Platform Extension Framework (PXF) deployed. PXF provides connectors that enable you to access data stored in sources external to your Greenplum Database deployment. These external sources include Hadoop (HDFS, Hive, HBase), object stores (Azure, Google Cloud Storage, Minio, S3), and SQL databases (via JDBC). See [Deploying PXF with Greenplum](deploy-pxf.html) for more information about deploying PXF with <%=vars.product_name %>.
+    {{#include ./product_name_long.md}} provides one additional sample manifest file that you can use as a template (copy to the `/workspace` directory before modifying):
+    - `samples/my-gp-with-pxf-instance.yaml` contains the minimal configuration for a cluster that includes the Platform Extension Framework (PXF) deployed. PXF provides connectors that enable you to access data stored in sources external to your Greenplum Database deployment. These external sources include Hadoop (HDFS, Hive, HBase), object stores (Azure, Google Cloud Storage, Minio, S3), and SQL databases (via JDBC). See [Deploying PXF with Greenplum](deploy-pxf.html) for more information about deploying PXF with {{#include ./product_name.md}}.
 
     
 1. (Optional) If you have specified `workerSelector` in your manifest file, then you need to apply the specified labels to the nodes that belong in the `masterAndStandby` and `segments` pools by using the following command:

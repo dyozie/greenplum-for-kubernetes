@@ -1,10 +1,10 @@
 # VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition running on Google Cloud Platform (GCP)
 
-Follow this procedure to deploy <%=vars.product_name %> to VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition.
+Follow this procedure to deploy {{#include ./product_name.md}} to VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition.
 
 ## <a id="softwarereq"></a>Required Software
 
-To deploy <%=vars.product_name %> on VMware Tanzu Kubernetes Grid Integrated Edition, you require the following software:
+To deploy {{#include ./product_name.md}} on VMware Tanzu Kubernetes Grid Integrated Edition, you require the following software:
 
 <%=partial 'partials/prerequisites-common' %>
 
@@ -14,7 +14,7 @@ To deploy <%=vars.product_name %> on VMware Tanzu Kubernetes Grid Integrated Edi
 ## <a id="softwarereq"></a>Cluster Requirements
 
 This procedure requires that VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition is installed and running, along with all prerequisite
-software and configuration. See [Installing VMware Tanzu Kubernetes Grid Integrated Edition for <%=vars.product_name %>, Using Google Cloud Platform (GCP)](prerequisites.html) for information.
+software and configuration. See [Installing VMware Tanzu Kubernetes Grid Integrated Edition for {{#include ./product_name.md}}, Using Google Cloud Platform (GCP)](prerequisites.html) for information.
 
 In the TKGI tile under **Kubernetes Cloud Provider**, ensure that the service accounts that are listed under **GCP Master Service Account ID** and **GCP Worker Service Account ID** have permission to pull images from the GCS bucket named `artifacts.<project-name>.appspot.com`.
 
@@ -30,13 +30,13 @@ pks list-clusters
 
 **Note:** The `pks` login cookie typically expires after a day or two.
 
-The <%=vars.product_name %> deployment process requires the ability to map the host system's `/sys/fs/cgroup` directory onto each container's `/sys/fs/cgroup`. Ensure that no kernel security module (for example, AppArmor) uses a profile that disallows mounting `/sys/fs/cgroup`.
+The {{#include ./product_name.md}} deployment process requires the ability to map the host system's `/sys/fs/cgroup` directory onto each container's `/sys/fs/cgroup`. Ensure that no kernel security module (for example, AppArmor) uses a profile that disallows mounting `/sys/fs/cgroup`.
 
 To use pre-created disks with TKGI instead of (default) automatically-managed persistent volumes, follow the instructions in [(Optional) Preparing Pre-Created Disks](#pre_created_disks) before continuing with the procedure.
 
 **Note:** If any problems occur during deployment, retry deploying Greenplum by first removing the previous deployment.
 
-<%=vars.product_name %> requires the following recommended settings:
+{{#include ./product_name.md}} requires the following recommended settings:
 
 1. Ability to increase the open file limit on the TKGI cluster nodes
 

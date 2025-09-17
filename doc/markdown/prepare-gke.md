@@ -1,10 +1,10 @@
 # Google Kubernetes Engine (GKE) running on Google Cloud Platform (GCP)
 
-This section describes the requirements for using <%=vars.product_name %> with Google Kubernetes Engine (GKE) deployments.
+This section describes the requirements for using {{#include ./product_name.md}} with Google Kubernetes Engine (GKE) deployments.
 
 ## <a id="softwarereq"></a>Required Software
 
-To deploy <%=vars.product_name %> on Google Kubernetes Engine, you require the following software:
+To deploy {{#include ./product_name.md}} on Google Kubernetes Engine, you require the following software:
 
 <%=partial 'partials/prerequisites-common' %>
 
@@ -20,7 +20,7 @@ When creating the GKE cluster, ensure that you make the following selections on 
 - Set the **Size** to 4 or more nodes.
 - Set **Automatic node repair** to **Disabled**.
 
-In addition to the above, the <%=vars.product_name %> deployment process requires the ability to map the host system's `/sys/fs/cgroup` directory onto each container's `/sys/fs/cgroup`. Ensure that no kernel security module (for example, AppArmor) uses a profile that disallows mounting `/sys/fs/cgroup`.
+In addition to the above, the {{#include ./product_name.md}} deployment process requires the ability to map the host system's `/sys/fs/cgroup` directory onto each container's `/sys/fs/cgroup`. Ensure that no kernel security module (for example, AppArmor) uses a profile that disallows mounting `/sys/fs/cgroup`.
 
 ## <a id="context"></a>Setting the Kubernetes Context
 

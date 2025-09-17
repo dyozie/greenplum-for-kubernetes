@@ -176,7 +176,7 @@ For either primary or mirror segment failures, follow these steps to recover fai
 
 ## <a id="moreinfo"></a>Getting More Information
 
-For more information about recovering failed segments, see these links in the <%=vars.product_name %> documentation:
+For more information about recovering failed segments, see these links in the {{#include ./product_name.md}} documentation:
 
 * [gprecoverseg](http://greenplum.docs.pivotal.io/5120/utility_guide/admin_utilities/gprecoverseg.html) Reference Page
 * [Detecting a Failed Segment](http://greenplum.docs.pivotal.io/5120/admin_guide/highavail/topics/g-detecting-a-failed-segment.html)

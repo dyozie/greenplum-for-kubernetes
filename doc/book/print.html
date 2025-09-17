@@ -153,24 +153,24 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>&lt;% set_title(product_name_long) %&gt;</p>
+                        <h1 id="greenplum-for-kubernetes"><a class="header" href="#greenplum-for-kubernetes">Greenplum for Kubernetes</a></h1>
 <p>Revised November 18, 2020</p>
-<p>This documentation describes how to deploy and use the &lt;%=vars.product_name_long %&gt; distribution.</p>
-<p>Key topics in this &lt;%=vars.product_name %&gt; Documentation include:</p>
+<p>This documentation describes how to deploy and use the Greenplum for Kubernetes distribution.</p>
+<p>Key topics in this Greenplum Documentation include:</p>
 <ul>
 <li><a href="release-notes.html">Release Notes</a></li>
-<li><a href="about.html">About &lt;%=vars.product_name_long %&gt;</a></li>
-<li><a href="installing.html">Installing &lt;%=vars.product_name_long %&gt;</a></li>
+<li><a href="about.html">About Greenplum for Kubernetes</a></li>
+<li><a href="installing.html">Installing Greenplum for Kubernetes</a></li>
 <li><a href="deploy-operator.html">Deploying or Redeploying a Greenplum Cluster</a></li>
 <li><a href="operator-reference.html">Greenplum Operator Manifest File</a></li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><p>&lt;% set_title(product_name_long, “Version”, product_version, “Release Notes”) %&gt;</p>
-<p>&lt;%=vars.product_name_long %&gt; 2.3 is a minor release that introduces new features and bug fixes.</p>
-<p>Refer to the <a href="https://gpdb.docs.pivotal.io">&lt;%=vars.product_name %&gt; Database</a> documentation for detailed information about &lt;%=vars.product_name %&gt; Database.</p>
-<p><strong>Note:</strong> Upgrading or migrating data from &lt;%=vars.product_name %&gt; version 1.x to version 2.x is not supported. You must uninstall &lt;%=vars.product_name %&gt; version 1.x using the instuctions in <a href="uninstalling.html">Uninstalling &lt;%=vars.product_name_long %&gt;</a> before installing version 2.x. Persistent volumes that were created for a version 1.x cluster cannot be used with version 2.x.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="greenplum-for-kubernetes-versionn-23-release-notes"><a class="header" href="#greenplum-for-kubernetes-versionn-23-release-notes">Greenplum for Kubernetes Versionn 2.3 Release Notes</a></h1>
+<p>Greenplum for Kubernetes 2.3 is a minor release that introduces new features and bug fixes.</p>
+<p>Refer to the <a href="https://gpdb.docs.pivotal.io">Greenplum Database</a> documentation for detailed information about Greenplum Database.</p>
+<p><strong>Note:</strong> Upgrading or migrating data from Greenplum version 1.x to version 2.x is not supported. You must uninstall Greenplum version 1.x using the instuctions in <a href="uninstalling.html">Uninstalling Greenplum for Kubernetes</a> before installing version 2.x. Persistent volumes that were created for a version 1.x cluster cannot be used with version 2.x.</p>
 <h2 id="components"><a class="header" href="#components"><a id="component_versions"></a>Components</a></h2>
-<p>&lt;%=vars.product_name_long %&gt; includes the &lt;%=vars.product_name %&gt; Database version identified below:</p>
-<div class="table-wrapper"><table><thead><tr><th>&lt;%=vars.product_name %&gt; Version</th><th>&lt;%=vars.product_name %&gt; Database Version</th></tr></thead><tbody>
+<p>Greenplum for Kubernetes includes the Greenplum Database version identified below:</p>
+<div class="table-wrapper"><table><thead><tr><th>Greenplum Version</th><th>Greenplum Database Version</th></tr></thead><tbody>
 <tr><td>2.3.0</td><td>6.11.1</td></tr>
 <tr><td>2.2.0</td><td>6.10.1</td></tr>
 <tr><td>2.1.0, 2.0.1</td><td>6.8.1</td></tr>
@@ -178,7 +178,7 @@
 </tbody></table>
 </div>
 <h2 id="supported-platforms"><a class="header" href="#supported-platforms"><a id="supported_platforms"></a>Supported Platforms</a></h2>
-<p>This version of &lt;%=vars.product_name_long %&gt; is supported on the following platforms:</p>
+<p>This version of Greenplum for Kubernetes is supported on the following platforms:</p>
 <ul>
 <li>VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition 1.7.0 (contains Kubernetes 1.16.7)</li>
 <li>Google Kubernetes Engine (GKE) Kubernetes 1.16.7</li>
@@ -186,7 +186,7 @@
 </ul>
 <p>Additional Kubernetes environments, such as Minikube, can be used for testing or demonstration purposes.</p>
 <h2 id="release-230-changes"><a class="header" href="#release-230-changes"><a id="changedfeatures201"></a>Release 2.3.0 Changes</a></h2>
-<p>&lt;%=vars.product_name %&gt; 2.3.0 is a minor release that includes these changes:</p>
+<p>Greenplum 2.3.0 is a minor release that includes these changes:</p>
 <ul>
 <li>Greenplum Text is now a supported feature.</li>
 <li>Greenplum Command Center installation files are now installed by default with Greenplum for Kubernetes. To use Command Center you must execute the Command Center installation after deploying a new cluster. See <a href="gpcc.html">Using Greenplum Command Center</a>.</li>
@@ -194,39 +194,39 @@
 </ul>
 <h2 id="known-issues-and-limitations-for-kubernetes-deployments"><a class="header" href="#known-issues-and-limitations-for-kubernetes-deployments"><a id="knownissues"></a>Known Issues and Limitations for Kubernetes Deployments</a></h2>
 <ul>
-<li>Currently &lt;%=vars.product_name_long %&gt; does not support automatic upgrades of Greenplum Text. If you installed an earlier version of Greenplum Text in &lt;%=vars.product_name_long %&gt; and then upgrade to version 2.3, you must manually complete the Greenplum Text upgrade by executing <code>gptext-installsql -c gpadmin &amp;&amp; gptext-installsql gpadmin</code> after the upgraded cluster is fully running.</li>
-<li>The <code>zkManager</code> utility, used for checking the ZooKeeper cluster state and cluster management with Greenplum Text deployments, is not available with &lt;%=vars.product_name_long %&gt;. As a workaround, use <code>kubectl</code> to manage the ZooKeeper cluster.</li>
+<li>Currently Greenplum for Kubernetes does not support automatic upgrades of Greenplum Text. If you installed an earlier version of Greenplum Text in Greenplum for Kubernetes and then upgrade to version 2.3, you must manually complete the Greenplum Text upgrade by executing <code>gptext-installsql -c gpadmin &amp;&amp; gptext-installsql gpadmin</code> after the upgraded cluster is fully running.</li>
+<li>The <code>zkManager</code> utility, used for checking the ZooKeeper cluster state and cluster management with Greenplum Text deployments, is not available with Greenplum for Kubernetes. As a workaround, use <code>kubectl</code> to manage the ZooKeeper cluster.</li>
 <li>If you deploy a cluster with Greenplum Text, the <code>gptext-state</code> utility always throws the warning message: <code>object of type 'NoneType' has no len()</code>. This message can be safely ignored in most cases. However, note that the utility cannot detect if the ZooKeeper cluster is down.</li>
 <li>VMware does not support deployments that have been modified by adding layers to the packaged Docker images, or deployments that reference images other than the Greenplum Operator. VMware does not support changing the contents of the deployed containers and pods in any way.</li>
 <li>Greenplum Database connector functionality is not supported. This includes Greenplum Streaming Server (gpss) and its API, Greenplum-Informatica Connector, Greenplum-Spark Connector, and the Greenplum-Kafka Integration.</li>
-<li>&lt;%=vars.product_name_long %&gt; does not support the built-in SNMP features that are available in &lt;%=vars.product_name %&gt; Database.</li>
-<li>&lt;%=vars.product_name_long %&gt; does not support installing Greenplum extensions that use the <code>.gppkg</code> format (and <code>gppkg</code> utility). Future releases will include these extensions as part of the distribution, as with MADlib.</li>
+<li>Greenplum for Kubernetes does not support the built-in SNMP features that are available in Greenplum Database.</li>
+<li>Greenplum for Kubernetes does not support installing Greenplum extensions that use the <code>.gppkg</code> format (and <code>gppkg</code> utility). Future releases will include these extensions as part of the distribution, as with MADlib.</li>
 <li>The Greenplum Operator does not yet support changing all attribute values of a deployed Greenplum cluster. See <a href="operator-reference.html">Greenplum Operator Manifest File</a> for details.</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><p>&lt;% set_title(“About”, product_name_long) %&gt;</p>
-<p>&lt;%=vars.product_name %&gt; utilizes the Kubernetes platform to help you quickly and reliably deploy Greenplum clusters that are tailored for a variety of use cases, such as analytical processing with business intelligence tools or high-performance ETL operations for data scientists. Post-deployment, &lt;%=vars.product_name %&gt; helps you maintain your Greenplum cluster by expanding it to accommodate additional processing requirements or activating standby servers to maintain high availability.</p>
-<p>The &lt;%=vars.product_name %&gt; distribution for Kubernetes provides Docker images with the &lt;%=vars.product_name %&gt; Database software and the Greenplum Operator running on Ubuntu. The Greenplum Operator registers &lt;%=vars.product_name %&gt; as a first-class resource within Kubernetes, and orchestrates the deployment, management, and deletion of Greenplum in Kubernetes, as directed by your requests. In most cases, you simply specify the desired Greenplum configuration in a declarative YAML-formatted file, and provide that file to the Greenplum Operator.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="about-greenplum-for-kubernetes"><a class="header" href="#about-greenplum-for-kubernetes">About Greenplum for Kubernetes</a></h1>
+<p>Greenplum utilizes the Kubernetes platform to help you quickly and reliably deploy Greenplum clusters that are tailored for a variety of use cases, such as analytical processing with business intelligence tools or high-performance ETL operations for data scientists. Post-deployment, Greenplum helps you maintain your Greenplum cluster by expanding it to accommodate additional processing requirements or activating standby servers to maintain high availability.</p>
+<p>The Greenplum distribution for Kubernetes provides Docker images with the Greenplum Database software and the Greenplum Operator running on Ubuntu. The Greenplum Operator registers Greenplum as a first-class resource within Kubernetes, and orchestrates the deployment, management, and deletion of Greenplum in Kubernetes, as directed by your requests. In most cases, you simply specify the desired Greenplum configuration in a declarative YAML-formatted file, and provide that file to the Greenplum Operator.</p>
 <h2 id="differences-from-greenplum-deployed-on-hardware-or-vms"><a class="header" href="#differences-from-greenplum-deployed-on-hardware-or-vms"><a id="differences"></a>Differences from Greenplum Deployed on Hardware or VMs</a></h2>
-<p>&lt;%=vars.product_name_long %&gt; is functionally different from the &lt;%=vars.product_name %&gt; Database in other deployment environments:</p>
+<p>Greenplum for Kubernetes is functionally different from the Greenplum Database in other deployment environments:</p>
 <ul>
-<li>Certain features, such as MADlib, that are optional in other deployments are installed automatically with &lt;%=vars.product_name_long %&gt;.</li>
-<li>&lt;%=vars.product_name_long %&gt; uses Resource Group-based resource management by default, compared to other deployment environments that use Resource Queue-based resource management.</li>
-<li>&lt;%=vars.product_name_long %&gt; sets the default value of the <code>gp_resource_group_memory_limit</code> configuration parameter to 1.0, because it operates in an environment with reserved resources that are not shared between multiple primary and mirror segments.</li>
-<li>&lt;%=vars.product_name_long %&gt; does not currently support cluster monitoring with Greenplum Command Center. Use system-level monitoring tools such as Prometheus and Grafana until Greenplum Command Center support is available.</li>
-<li>&lt;%=vars.product_name %&gt; clusters in Kubernetes do not support installing Greenplum extensions that use the <code>.gppkg</code> format (and <code>gppkg</code> utility). Future releases will include these extensions as part of the distribution, as with MADlib.</li>
+<li>Certain features, such as MADlib, that are optional in other deployments are installed automatically with Greenplum for Kubernetes.</li>
+<li>Greenplum for Kubernetes uses Resource Group-based resource management by default, compared to other deployment environments that use Resource Queue-based resource management.</li>
+<li>Greenplum for Kubernetes sets the default value of the <code>gp_resource_group_memory_limit</code> configuration parameter to 1.0, because it operates in an environment with reserved resources that are not shared between multiple primary and mirror segments.</li>
+<li>Greenplum for Kubernetes does not currently support cluster monitoring with Greenplum Command Center. Use system-level monitoring tools such as Prometheus and Grafana until Greenplum Command Center support is available.</li>
+<li>Greenplum clusters in Kubernetes do not support installing Greenplum extensions that use the <code>.gppkg</code> format (and <code>gppkg</code> utility). Future releases will include these extensions as part of the distribution, as with MADlib.</li>
 </ul>
-<div style="break-before: page; page-break-before: always;"></div><p>&lt;% set_title(“Installing”, product_name_long) %&gt;</p>
-<p>This topic describes how to install &lt;%=vars.product_name_long %&gt;. The installation process involves loading the &lt;%=vars.product_name %&gt; container images into your container registry, and then using the <code>helm</code> package manager to install the Greenplum Operator resource in Kubernetes. After the Greenplum Operator resource is available, you can interact with it to deploy and manage Greenplum clusters in Kubernetes.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="installing-greenplum-for-kubernetes"><a class="header" href="#installing-greenplum-for-kubernetes">Installing Greenplum for Kubernetes</a></h1>
+<p>This topic describes how to install Greenplum for Kubernetes. The installation process involves loading the Greenplum container images into your container registry, and then using the <code>helm</code> package manager to install the Greenplum Operator resource in Kubernetes. After the Greenplum Operator resource is available, you can interact with it to deploy and manage Greenplum clusters in Kubernetes.</p>
 <h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
-<p>Before you install &lt;%=vars.product_name %&gt;, ensure that you have installed all required software and prepared your Kubernetes environment as described in <a href="prepare-k8s.html">Prerequisites</a>. Also, ensure that any previous &lt;%=vars.product_name %&gt; installation has been uninstalled as described in <a href="uninstalling.html">Uninstalling &lt;%=vars.product_name %&gt;</a>.</p>
+<p>Before you install Greenplum, ensure that you have installed all required software and prepared your Kubernetes environment as described in <a href="prepare-k8s.html">Prerequisites</a>. Also, ensure that any previous Greenplum installation has been uninstalled as described in <a href="uninstalling.html">Uninstalling Greenplum</a>.</p>
 <h2 id="procedure"><a class="header" href="#procedure">Procedure</a></h2>
-<p>Follow these steps to download and install the &lt;%=vars.product_name %&gt; container images, and install the Greenplum Operator resource.</p>
+<p>Follow these steps to download and install the Greenplum container images, and install the Greenplum Operator resource.</p>
 <ol>
 <li>
-<p>Download the &lt;%=vars.product_name %&gt; software from <a href="https://network.pivotal.io/products/greenplum-for-kubernetes">VMware Tanzu Network</a>. The download file has the name: <code>greenplum-for-kubernetes-&lt;version&gt;.tar.gz</code>.</p>
+<p>Download the Greenplum software from <a href="https://network.pivotal.io/products/greenplum-for-kubernetes">VMware Tanzu Network</a>. The download file has the name: <code>greenplum-for-kubernetes-&lt;version&gt;.tar.gz</code>.</p>
 </li>
 <li>
-<p>Go to the directory where you downloaded the &lt;%=vars.product_name_long %&gt; distribution, and unpack the downloaded software. For example:</p>
+<p>Go to the directory where you downloaded the Greenplum for Kubernetes distribution, and unpack the downloaded software. For example:</p>
 <pre><code class="language-bash">$ cd ~/Downloads
 $ tar xzf greenplum-for-kubernetes-*.tar.gz
 </code></pre>
@@ -346,7 +346,7 @@ EOF
   [ ... ]
 }
 </code></pre>
-<p>See the documentation on the manifest’s <a href="operator-reference.html#workerSelector">workerSelector attribute</a> for more information on how &lt;%=vars.product_name %&gt; handles label selectors.</p>
+<p>See the documentation on the manifest’s <a href="operator-reference.html#workerSelector">workerSelector attribute</a> for more information on how Greenplum handles label selectors.</p>
 </li>
 <li>
 <p>Use <code>helm</code> to create a new Greenplum Operator release, specifying the YAML configuration file if you created one. For example, to create a new release with the name “greenplum-operator”:</p>
@@ -411,11 +411,10 @@ replicaset.apps/greenplum-operator-6ff95b6b79   1         1         1       24s
 </li>
 </ol>
 <p>At this point, you can interact with the Greenplum Operator to deploy new Greenplum clusters or manage existing Greenplum clusters. See <a href="using.html">About the Greenplum Operator</a>.</p>
-<div style="break-before: page; page-break-before: always;"></div><hr />
-<h2 id="title-deploying-or-redeploying-a-greenplum-cluster"><a class="header" href="#title-deploying-or-redeploying-a-greenplum-cluster">title: Deploying or Redeploying a Greenplum Cluster</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="deploying-or-redeploying-a-greenplum-cluster"><a class="header" href="#deploying-or-redeploying-a-greenplum-cluster">Deploying or Redeploying a Greenplum Cluster</a></h1>
 <p>This section describes how to use the Greenplum Operator deploy a Greenplum cluster to your Kubernetes system. You can use these instructions either to deploy a brand new cluster (provisioning new, empty Persistent Volume Claims in Kubernetes), or to re-deploy an earlier cluster, re-using existing Persistent Volumes if available.</p>
 <h2 id="prerequisites-1"><a class="header" href="#prerequisites-1">Prerequisites</a></h2>
-<p>This procedure requires that you first install the &lt;%=vars.product_name %&gt; docker images and create the Greenplum Operator in your Kubernetes system. See <a href="installing.html">Installing &lt;%=vars.product_name_long %&gt;</a> for more information.</p>
+<p>This procedure requires that you first install the Greenplum docker images and create the Greenplum Operator in your Kubernetes system. See <a href="installing.html">Installing Greenplum for Kubernetes</a> for more information.</p>
 <p>Verify that the Greenplum Operator is installed and running in your system before you continue:</p>
 <pre><code class="language-bash">$ helm list
 </code></pre>
@@ -441,7 +440,7 @@ kube-system   Active    50d
 <h2 id="procedure-1"><a class="header" href="#procedure-1">Procedure</a></h2>
 <ol>
 <li>
-<p>Go to the <code>workspace</code> subdirectory where you unpacked the &lt;%=vars.product_name %&gt; distribution for Kubernetes:</p>
+<p>Go to the <code>workspace</code> subdirectory where you unpacked the Greenplum distribution for Kubernetes:</p>
 <pre><code class="language-bash">$ cd ./greenplum-for-kubernetes-*/workspace
 </code></pre>
 </li>
@@ -472,9 +471,9 @@ spec:
 <p>Most non-trivial clusters will require configuration changes to specify additional segments, cpu, memory, <code>pg_hba.conf</code> entries, and Storage Class resources. See <a href="operator-reference.html">Greenplum Database Properties</a> for information about these configuration parameters and change them as necessary before you continue.</p>
 <p><br/>If you want to re-deploy a Greenplum cluster that you previously deployed, simply locate and use the existing configuration file.</p>
 <p><br/>If you want to deploy another Greenplum cluster (in a separate Kubernetes namespace), copy the <code>workspace/my-gp-instance.yaml</code> or a another deployment manifest file, and edit it as necessary to meet your cluster configuration requirements.</p>
-<p>&lt;%=vars.product_name_long %&gt; provides one additional sample manifest file that you can use as a template (copy to the <code>/workspace</code> directory before modifying):</p>
+<p>Greenplum for Kubernetes provides one additional sample manifest file that you can use as a template (copy to the <code>/workspace</code> directory before modifying):</p>
 <ul>
-<li><code>samples/my-gp-with-pxf-instance.yaml</code> contains the minimal configuration for a cluster that includes the Platform Extension Framework (PXF) deployed. PXF provides connectors that enable you to access data stored in sources external to your Greenplum Database deployment. These external sources include Hadoop (HDFS, Hive, HBase), object stores (Azure, Google Cloud Storage, Minio, S3), and SQL databases (via JDBC). See <a href="deploy-pxf.html">Deploying PXF with Greenplum</a> for more information about deploying PXF with &lt;%=vars.product_name %&gt;.</li>
+<li><code>samples/my-gp-with-pxf-instance.yaml</code> contains the minimal configuration for a cluster that includes the Platform Extension Framework (PXF) deployed. PXF provides connectors that enable you to access data stored in sources external to your Greenplum Database deployment. These external sources include Hadoop (HDFS, Hive, HBase), object stores (Azure, Google Cloud Storage, Minio, S3), and SQL databases (via JDBC). See <a href="deploy-pxf.html">Deploying PXF with Greenplum</a> for more information about deploying PXF with Greenplum.</li>
 </ul>
 </li>
 <li>
@@ -613,8 +612,7 @@ greenplum/data
 <p>See also <a href="accessing.html">Accessing a Greenplum Cluster in Kubernetes</a>.</p>
 </li>
 </ol>
-<div style="break-before: page; page-break-before: always;"></div><hr />
-<h2 id="title-greenplum-database-properties"><a class="header" href="#title-greenplum-database-properties">title: Greenplum Database Properties</a></h2>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="greenplum-database-properties"><a class="header" href="#greenplum-database-properties">Greenplum Database Properties</a></h1>
 <p>This section describes each of the properties that you can define in a Greenplum Operator manifest file.</p>
 <h2 id="synopsis"><a class="header" href="#synopsis"><a id="synopsis"></a>Synopsis</a></h2>
 <pre><code class="language-yaml">apiVersion: "greenplum.pivotal.io/v1"
@@ -667,7 +665,7 @@ spec:
 <dd>This value cannot be dynamically changed for an existing cluster.  To deploy an existing cluster to a different namespace, first delete the cluster instance and then deploy it using the new `namespace` value.</dd>
 <h3 id="segment-configuration"><a class="header" href="#segment-configuration"><a id="segment"></a>Segment Configuration</a></h3>
 <dt>`masterAndStandby:`, `segments:`</dt>
-<dd>These sections share many of the same properties to configure memory, CPU, and storage for Greenplum segment pods. `masterAndStandby:` settings apply only to both the master and standby master pods. All <%=vars.product_name %> clusters include a standby master. The `segments:` section applies to each primary segment and optional mirror segment pod.</dd>
+<dd>These sections share many of the same properties to configure memory, CPU, and storage for Greenplum segment pods. `masterAndStandby:` settings apply only to both the master and standby master pods. All Greenplum clusters include a standby master. The `segments:` section applies to each primary segment and optional mirror segment pod.</dd>
 <dt>`standby: <yes or no>`</dt>
 <dd>(Optional) Enables or disables the use of standby when deploying a Greenplum cluster. Defaults to "no" if omitted or left empty. This value cannot be dynamically changed for an existing cluster.</dd>
 <dd><br/>**Note:** You cannot change this value for an existing cluster unless you first delete both the deployed cluster *and* the PVCs that were created for that cluster. This will result in a new, empty Greenplum cluster. See [Deleting Greenplum Persistent Volume Claims](deleting.html#delpvs).</dd>
@@ -739,7 +737,7 @@ spec:
 <h2 id="examples"><a class="header" href="#examples"><a id="examples"></a>Examples</a></h2>
 <p>See the <code>workspace/my-greenplum-cluster.yaml</code> for an example manifest.</p>
 <h2 id="see-also"><a class="header" href="#see-also"><a id="seealso"></a>See Also</a></h2>
-<p><a href="deploy-operator.html">Deploying or Redeploying a Greenplum Cluster</a>, <a href="deleting.html">Deleting a Greenplum Cluster</a>, <a href="installing.html">Installing &lt;%=vars.product_name_long %&gt;</a>.</p>
+<p><a href="deploy-operator.html">Deploying or Redeploying a Greenplum Cluster</a>, <a href="deleting.html">Deleting a Greenplum Cluster</a>, <a href="installing.html">Installing Greenplum for Kubernetes</a>.</p>
 
                     </main>
 

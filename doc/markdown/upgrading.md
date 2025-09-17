@@ -1,6 +1,6 @@
 # Upgrading Greenplum for Kubernetes
 
-This topic describes how to upgrade  <%=vars.product_name_long %> from version 2.x to a subsequent version 2.y release. The upgrade process involves first deleting any existing Greenplum cluster deployments, and then upgrading the Greenplum Operator to the latest version. You then use the new Greenplum Operator to re-create earlier cluster deployments, using the same manifest files. During this process, you re-use any existing persistent volumes so that Greenplum cluster data is preserved.  
+This topic describes how to upgrade  {{#include ./product_name_long.md}} from version 2.x to a subsequent version 2.y release. The upgrade process involves first deleting any existing Greenplum cluster deployments, and then upgrading the Greenplum Operator to the latest version. You then use the new Greenplum Operator to re-create earlier cluster deployments, using the same manifest files. During this process, you re-use any existing persistent volumes so that Greenplum cluster data is preserved.  
 
 ## Prerequisites
 

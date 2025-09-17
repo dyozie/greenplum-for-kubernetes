@@ -1,10 +1,10 @@
 # Using MADlib for Analytics
 
-This topic describes how to configure the MADlib open-source library for scalable in-database analytics in <%=vars.product_name %>.
+This topic describes how to configure the MADlib open-source library for scalable in-database analytics in {{#include ./product_name.md}}.
 
-## <a id="about"></a>About MADlib in <%=vars.product_name_long %>
+## <a id="about"></a>About MADlib in {{#include ./product_name_long.md}}
 
-Unlike with other <%=vars.product_name %> distributions, <%=vars.product_name_long %> automatically installs the MADlib software as part of the Greenplum Docker image. For example, after initializing a new Greenplum cluster in Kubernetes, you can see that MADlib is available as an installed Debian Package:
+Unlike with other {{#include ./product_name.md}} distributions, {{#include ./product_name_long.md}} automatically installs the MADlib software as part of the Greenplum Docker image. For example, after initializing a new Greenplum cluster in Kubernetes, you can see that MADlib is available as an installed Debian Package:
 
 ``` bash
 $ kubectl exec -it master-0 -- bash -c "dpkg -s madlib"
@@ -50,7 +50,7 @@ madpack.py: INFO : > Wrote version info in MigrationHistory table
 madpack.py: INFO : MADlib 1.17.0 installed successfully in madlib schema.
 ```
 
-This installs MADlib functions into the default schema named `madlib`. Execute `madpack -h` or see the [Greenplum MADlib Extension for Analytics](http://gpdb.docs.pivotal.io/5120/ref_guide/extensions/madlib.html) documentation for <%=vars.product_name %> Database for more information about using `madpack`.
+This installs MADlib functions into the default schema named `madlib`. Execute `madpack -h` or see the [Greenplum MADlib Extension for Analytics](http://gpdb.docs.pivotal.io/5120/ref_guide/extensions/madlib.html) documentation for {{#include ./product_name.md}} Database for more information about using `madpack`.
 
 ## <a id="moreinfo"></a>Getting More Information
 

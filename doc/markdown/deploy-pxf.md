@@ -1,24 +1,24 @@
 # Deploying PXF with Greenplum
 
-This section describes procedures for deploying a <%=vars.product_name %> cluster with the Greenplum platform extension framework (PXF) on Kubernetes.
+This section describes procedures for deploying a {{#include ./product_name.md}} cluster with the Greenplum platform extension framework (PXF) on Kubernetes.
 
-## <a id="about"></a>About PXF with <%=vars.product_name_long %>
+## <a id="about"></a>About PXF with {{#include ./product_name_long.md}}
 
-When you deploy PXF to <%=vars.product_name_long %>, the Greenplum Operator creates one or more dedicated pods, or _replicas_, to host the PXF server instances. This differs from Greenplum deployed to other platforms, where a PXF server instance is deployed to each Greenplum segment host. With <%=vars.product_name_long %>, you can choose to deploy as many PXF server _replicas_ as needed to provide redundancy should a PXF pod fail and to distribute load.
+When you deploy PXF to {{#include ./product_name_long.md}}, the Greenplum Operator creates one or more dedicated pods, or _replicas_, to host the PXF server instances. This differs from Greenplum deployed to other platforms, where a PXF server instance is deployed to each Greenplum segment host. With {{#include ./product_name_long.md}}, you can choose to deploy as many PXF server _replicas_ as needed to provide redundancy should a PXF pod fail and to distribute load.
 
 When deploying to Kubernetes, you store all PXF configuration files for a cluster externally, on an S3 data source. The deployment manifest file then specifies the S3 bucket-path to use for downloading the PXF configuration to all configured PXF servers.
 
 When you install a new Greenplum cluster using the template PXF manifest file, `workspace/samples/my-gp-with-pxf-instance.yaml`, PXF is installed and initialized with a default (empty) PXF configuration directory. After deploying the cluster, you can customize the configuration by creating PXF server configurations for multiple data sources, and then redeploy with an updated manifest file to use the PXF configuration in your cluster.
 
-**Note:** By default, <%=vars.product_name_long %> configures PXF server JVMs with the `-XX:+MaxRAMPercentage=75.0` setting in `PXF_JVM_OPTS`. This enables PXF to use most of the memory available in its container. The setting differs from PXF in other deployment environments, where PXF servers are deployed alongside Greenplum Segments and a fixed JVM memory size (`-Xmx2g -Xms1g` by default) is used to avoid competing for memory resources. See [Starting, Stopping, and Restarting PXF](https://gpdb.docs.pivotal.io/5latest/pxf/cfginitstart_pxf.html) in the <%=vars.product_name %> documentation for information about other runtime configuration options.
+**Note:** By default, {{#include ./product_name_long.md}} configures PXF server JVMs with the `-XX:+MaxRAMPercentage=75.0` setting in `PXF_JVM_OPTS`. This enables PXF to use most of the memory available in its container. The setting differs from PXF in other deployment environments, where PXF servers are deployed alongside Greenplum Segments and a fixed JVM memory size (`-Xmx2g -Xms1g` by default) is used to avoid competing for memory resources. See [Starting, Stopping, and Restarting PXF](https://gpdb.docs.pivotal.io/5latest/pxf/cfginitstart_pxf.html) in the {{#include ./product_name.md}} documentation for information about other runtime configuration options.
 
 ## <a id="initialize"></a>Deploying a New Greenplum Cluster with PXF Enabled
 
-Follow these steps to deploy a new <%=vars.product_name %> cluster on Kubernetes with PXF enabled. (To add the PXF service to an existing Greenplum cluster, see [Adding PXF to an Existing Greenplum Cluster](#add).)
+Follow these steps to deploy a new {{#include ./product_name.md}} cluster on Kubernetes with PXF enabled. (To add the PXF service to an existing Greenplum cluster, see [Adding PXF to an Existing Greenplum Cluster](#add).)
 
 You can deploy PXF servers either in their default, initialized state, or you can use an existing PXF configuration, stored in an S3 bucket location, to use as the PXF configuration for your cluster.
 
-See also [Configuring PXF Servers](#configure) for information about how to create and apply PXF server configurations to a <%=vars.product_name %> cluster in Kubernetes. 
+See also [Configuring PXF Servers](#configure) for information about how to create and apply PXF server configurations to a {{#include ./product_name.md}} cluster in Kubernetes. 
 
 1. Use the procedure described in [Deploying or Redeploying a Greenplum Cluster](deploy-operator.html) to deploy the cluster, but use the `samples/my-gp-with-pxf-instance.yaml` as the basis for your deployment. Copy the file into your `/workspace` directory. For example:
 
@@ -499,15 +499,15 @@ See also [Configuring PXF Servers](#configure) for information about how to crea
 
 ## <a id="configure"></a>Configuring PXF Servers
 
-With <%=vars.product_name_long %>, all PXF configuration files for a cluster are stored externally, on an S3 data source. The Greenplum manifest file then specifies the S3 bucket-path to use for downloading the PXF configuration to all configured PXF servers. Any directories and files at the specified bucket-path are copied as-is to all PXF Servers configured for the cluster.
+With {{#include ./product_name_long.md}}, all PXF configuration files for a cluster are stored externally, on an S3 data source. The Greenplum manifest file then specifies the S3 bucket-path to use for downloading the PXF configuration to all configured PXF servers. Any directories and files at the specified bucket-path are copied as-is to all PXF Servers configured for the cluster.
 
-This procedure describes how to add or modify a PXF configuration in a <%=vars.product_name %> cluster on Kubernetes.
+This procedure describes how to add or modify a PXF configuration in a {{#include ./product_name.md}} cluster on Kubernetes.
 
 ### <a id="prereq"></a>Prerequisites
 
 This procedure uses MinIO as an example data source both for storing the PXF server configuration and for accessing remote data via PXF. If you want to follow along using the MinIO example, install the MinIO client, `mc` to your local system. See the [MinIO Client Quickstart Guide](https://docs.min.io/docs/minio-client-quickstart-guide.html) for installation instructions.
 
-You should also have access to a <%=vars.product_name %> deployment on Kubernetes that includes PXF.  See [Deploying a Cluster with PXF Enabled](#initialize).
+You should also have access to a {{#include ./product_name.md}} deployment on Kubernetes that includes PXF.  See [Deploying a Cluster with PXF Enabled](#initialize).
 
 ### <a id="procedure"></a>Procedure
 
@@ -652,7 +652,7 @@ You should also have access to a <%=vars.product_name %> deployment on Kubernete
     
 5. Follow these steps to update your Greenplum cluster to use the new PXF server configuration file that you created and staged in MinIO:
 
-    1. Move to the <%=vars.product_name %> `workspace` directory you used to deploy the Greenplum cluster.
+    1. Move to the {{#include ./product_name.md}} `workspace` directory you used to deploy the Greenplum cluster.
 
     1. Edit the manifest file for your cluster (for example, `my-gp-with-pxf-instance.yaml`) in a text editor.
 

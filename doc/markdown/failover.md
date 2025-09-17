@@ -127,5 +127,5 @@ Follow these steps to fail over to a standby master instance in Kubernetes, shou
 
 ## <a id="moreinfo"></a>Getting More Information
 
-For more information about failing over to a standby master, see [Recovering a Failed Master](http://greenplum.docs.pivotal.io/5120/admin_guide/highavail/topics/g-recovering-a-failed-master.html) in the <%=vars.product_name %> documentation.
+For more information about failing over to a standby master, see [Recovering a Failed Master](http://greenplum.docs.pivotal.io/5120/admin_guide/highavail/topics/g-recovering-a-failed-master.html) in the {{#include ./product_name.md}} documentation.
 

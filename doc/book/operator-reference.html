@@ -152,8 +152,7 @@
 
                 <div id="content" class="content">
                     <main>
-                        <hr />
-<h2 id="title-greenplum-database-properties"><a class="header" href="#title-greenplum-database-properties">title: Greenplum Database Properties</a></h2>
+                        <h1 id="greenplum-database-properties"><a class="header" href="#greenplum-database-properties">Greenplum Database Properties</a></h1>
 <p>This section describes each of the properties that you can define in a Greenplum Operator manifest file.</p>
 <h2 id="synopsis"><a class="header" href="#synopsis"><a id="synopsis"></a>Synopsis</a></h2>
 <pre><code class="language-yaml">apiVersion: "greenplum.pivotal.io/v1"
@@ -206,7 +205,7 @@ spec:
 <dd>This value cannot be dynamically changed for an existing cluster.  To deploy an existing cluster to a different namespace, first delete the cluster instance and then deploy it using the new `namespace` value.</dd>
 <h3 id="segment-configuration"><a class="header" href="#segment-configuration"><a id="segment"></a>Segment Configuration</a></h3>
 <dt>`masterAndStandby:`, `segments:`</dt>
-<dd>These sections share many of the same properties to configure memory, CPU, and storage for Greenplum segment pods. `masterAndStandby:` settings apply only to both the master and standby master pods. All <%=vars.product_name %> clusters include a standby master. The `segments:` section applies to each primary segment and optional mirror segment pod.</dd>
+<dd>These sections share many of the same properties to configure memory, CPU, and storage for Greenplum segment pods. `masterAndStandby:` settings apply only to both the master and standby master pods. All Greenplum clusters include a standby master. The `segments:` section applies to each primary segment and optional mirror segment pod.</dd>
 <dt>`standby: <yes or no>`</dt>
 <dd>(Optional) Enables or disables the use of standby when deploying a Greenplum cluster. Defaults to "no" if omitted or left empty. This value cannot be dynamically changed for an existing cluster.</dd>
 <dd><br/>**Note:** You cannot change this value for an existing cluster unless you first delete both the deployed cluster *and* the PVCs that were created for that cluster. This will result in a new, empty Greenplum cluster. See [Deleting Greenplum Persistent Volume Claims](deleting.html#delpvs).</dd>
@@ -278,7 +277,7 @@ spec:
 <h2 id="examples"><a class="header" href="#examples"><a id="examples"></a>Examples</a></h2>
 <p>See the <code>workspace/my-greenplum-cluster.yaml</code> for an example manifest.</p>
 <h2 id="see-also"><a class="header" href="#see-also"><a id="seealso"></a>See Also</a></h2>
-<p><a href="deploy-operator.html">Deploying or Redeploying a Greenplum Cluster</a>, <a href="deleting.html">Deleting a Greenplum Cluster</a>, <a href="installing.html">Installing &lt;%=vars.product_name_long %&gt;</a>.</p>
+<p><a href="deploy-operator.html">Deploying or Redeploying a Greenplum Cluster</a>, <a href="deleting.html">Deleting a Greenplum Cluster</a>, <a href="installing.html">Installing Greenplum for Kubernetes</a>.</p>
 
                     </main>
 

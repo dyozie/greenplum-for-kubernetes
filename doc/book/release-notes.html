@@ -152,13 +152,13 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>&lt;% set_title(product_name_long, “Version”, product_version, “Release Notes”) %&gt;</p>
-<p>&lt;%=vars.product_name_long %&gt; 2.3 is a minor release that introduces new features and bug fixes.</p>
-<p>Refer to the <a href="https://gpdb.docs.pivotal.io">&lt;%=vars.product_name %&gt; Database</a> documentation for detailed information about &lt;%=vars.product_name %&gt; Database.</p>
-<p><strong>Note:</strong> Upgrading or migrating data from &lt;%=vars.product_name %&gt; version 1.x to version 2.x is not supported. You must uninstall &lt;%=vars.product_name %&gt; version 1.x using the instuctions in <a href="uninstalling.html">Uninstalling &lt;%=vars.product_name_long %&gt;</a> before installing version 2.x. Persistent volumes that were created for a version 1.x cluster cannot be used with version 2.x.</p>
+                        <h1 id="greenplum-for-kubernetes-versionn-23-release-notes"><a class="header" href="#greenplum-for-kubernetes-versionn-23-release-notes">Greenplum for Kubernetes Versionn 2.3 Release Notes</a></h1>
+<p>Greenplum for Kubernetes 2.3 is a minor release that introduces new features and bug fixes.</p>
+<p>Refer to the <a href="https://gpdb.docs.pivotal.io">Greenplum Database</a> documentation for detailed information about Greenplum Database.</p>
+<p><strong>Note:</strong> Upgrading or migrating data from Greenplum version 1.x to version 2.x is not supported. You must uninstall Greenplum version 1.x using the instuctions in <a href="uninstalling.html">Uninstalling Greenplum for Kubernetes</a> before installing version 2.x. Persistent volumes that were created for a version 1.x cluster cannot be used with version 2.x.</p>
 <h2 id="components"><a class="header" href="#components"><a id="component_versions"></a>Components</a></h2>
-<p>&lt;%=vars.product_name_long %&gt; includes the &lt;%=vars.product_name %&gt; Database version identified below:</p>
-<div class="table-wrapper"><table><thead><tr><th>&lt;%=vars.product_name %&gt; Version</th><th>&lt;%=vars.product_name %&gt; Database Version</th></tr></thead><tbody>
+<p>Greenplum for Kubernetes includes the Greenplum Database version identified below:</p>
+<div class="table-wrapper"><table><thead><tr><th>Greenplum Version</th><th>Greenplum Database Version</th></tr></thead><tbody>
 <tr><td>2.3.0</td><td>6.11.1</td></tr>
 <tr><td>2.2.0</td><td>6.10.1</td></tr>
 <tr><td>2.1.0, 2.0.1</td><td>6.8.1</td></tr>
@@ -166,7 +166,7 @@
 </tbody></table>
 </div>
 <h2 id="supported-platforms"><a class="header" href="#supported-platforms"><a id="supported_platforms"></a>Supported Platforms</a></h2>
-<p>This version of &lt;%=vars.product_name_long %&gt; is supported on the following platforms:</p>
+<p>This version of Greenplum for Kubernetes is supported on the following platforms:</p>
 <ul>
 <li>VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition 1.7.0 (contains Kubernetes 1.16.7)</li>
 <li>Google Kubernetes Engine (GKE) Kubernetes 1.16.7</li>
@@ -174,7 +174,7 @@
 </ul>
 <p>Additional Kubernetes environments, such as Minikube, can be used for testing or demonstration purposes.</p>
 <h2 id="release-230-changes"><a class="header" href="#release-230-changes"><a id="changedfeatures201"></a>Release 2.3.0 Changes</a></h2>
-<p>&lt;%=vars.product_name %&gt; 2.3.0 is a minor release that includes these changes:</p>
+<p>Greenplum 2.3.0 is a minor release that includes these changes:</p>
 <ul>
 <li>Greenplum Text is now a supported feature.</li>
 <li>Greenplum Command Center installation files are now installed by default with Greenplum for Kubernetes. To use Command Center you must execute the Command Center installation after deploying a new cluster. See <a href="gpcc.html">Using Greenplum Command Center</a>.</li>
@@ -182,13 +182,13 @@
 </ul>
 <h2 id="known-issues-and-limitations-for-kubernetes-deployments"><a class="header" href="#known-issues-and-limitations-for-kubernetes-deployments"><a id="knownissues"></a>Known Issues and Limitations for Kubernetes Deployments</a></h2>
 <ul>
-<li>Currently &lt;%=vars.product_name_long %&gt; does not support automatic upgrades of Greenplum Text. If you installed an earlier version of Greenplum Text in &lt;%=vars.product_name_long %&gt; and then upgrade to version 2.3, you must manually complete the Greenplum Text upgrade by executing <code>gptext-installsql -c gpadmin &amp;&amp; gptext-installsql gpadmin</code> after the upgraded cluster is fully running.</li>
-<li>The <code>zkManager</code> utility, used for checking the ZooKeeper cluster state and cluster management with Greenplum Text deployments, is not available with &lt;%=vars.product_name_long %&gt;. As a workaround, use <code>kubectl</code> to manage the ZooKeeper cluster.</li>
+<li>Currently Greenplum for Kubernetes does not support automatic upgrades of Greenplum Text. If you installed an earlier version of Greenplum Text in Greenplum for Kubernetes and then upgrade to version 2.3, you must manually complete the Greenplum Text upgrade by executing <code>gptext-installsql -c gpadmin &amp;&amp; gptext-installsql gpadmin</code> after the upgraded cluster is fully running.</li>
+<li>The <code>zkManager</code> utility, used for checking the ZooKeeper cluster state and cluster management with Greenplum Text deployments, is not available with Greenplum for Kubernetes. As a workaround, use <code>kubectl</code> to manage the ZooKeeper cluster.</li>
 <li>If you deploy a cluster with Greenplum Text, the <code>gptext-state</code> utility always throws the warning message: <code>object of type 'NoneType' has no len()</code>. This message can be safely ignored in most cases. However, note that the utility cannot detect if the ZooKeeper cluster is down.</li>
 <li>VMware does not support deployments that have been modified by adding layers to the packaged Docker images, or deployments that reference images other than the Greenplum Operator. VMware does not support changing the contents of the deployed containers and pods in any way.</li>
 <li>Greenplum Database connector functionality is not supported. This includes Greenplum Streaming Server (gpss) and its API, Greenplum-Informatica Connector, Greenplum-Spark Connector, and the Greenplum-Kafka Integration.</li>
-<li>&lt;%=vars.product_name_long %&gt; does not support the built-in SNMP features that are available in &lt;%=vars.product_name %&gt; Database.</li>
-<li>&lt;%=vars.product_name_long %&gt; does not support installing Greenplum extensions that use the <code>.gppkg</code> format (and <code>gppkg</code> utility). Future releases will include these extensions as part of the distribution, as with MADlib.</li>
+<li>Greenplum for Kubernetes does not support the built-in SNMP features that are available in Greenplum Database.</li>
+<li>Greenplum for Kubernetes does not support installing Greenplum extensions that use the <code>.gppkg</code> format (and <code>gppkg</code> utility). Future releases will include these extensions as part of the distribution, as with MADlib.</li>
 <li>The Greenplum Operator does not yet support changing all attribute values of a deployed Greenplum cluster. See <a href="operator-reference.html">Greenplum Operator Manifest File</a> for details.</li>
 </ul>
 

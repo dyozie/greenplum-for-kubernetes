@@ -1,10 +1,10 @@
 # Uninstalling Greenplum for Kubernetes
 
-This topic describes how to uninstall <%=vars.product_name_long %>. This process involves deleting previously-deployed Greenplum clusters, removing container images into your container registry, and using the `helm` package manager to delete the Greenplum Operator resource from Kubernetes. After you finish the uninstallation process, you will not be able to use the Greenplum Operator to manage existing Greenplum cluster deployments.
+This topic describes how to uninstall {{#include ./product_name_long.md}}. This process involves deleting previously-deployed Greenplum clusters, removing container images into your container registry, and using the `helm` package manager to delete the Greenplum Operator resource from Kubernetes. After you finish the uninstallation process, you will not be able to use the Greenplum Operator to manage existing Greenplum cluster deployments.
 
 ## Procedures
 
-Follow these steps to uninstall <%=vars.product_name_long %>:
+Follow these steps to uninstall {{#include ./product_name_long.md}}:
 
 1. Delete any existing Greenplum clusters previously created with the operator. Follow the steps from [Deleting a Greenplum Cluster](deleting.html) to delete any deployed Greenplum clusters.
 

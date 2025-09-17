@@ -1,18 +1,18 @@
 # Installing Greenplum for Kubernetes
 
-This topic describes how to install <%=vars.product_name_long %>. The installation process involves loading the <%=vars.product_name %> container images into your container registry, and then using the `helm` package manager to install the Greenplum Operator resource in Kubernetes. After the Greenplum Operator resource is available, you can interact with it to deploy and manage Greenplum clusters in Kubernetes.
+This topic describes how to install {{#include ./product_name_long.md}}. The installation process involves loading the {{#include ./product_name.md}} container images into your container registry, and then using the `helm` package manager to install the Greenplum Operator resource in Kubernetes. After the Greenplum Operator resource is available, you can interact with it to deploy and manage Greenplum clusters in Kubernetes.
 
 ## Prerequisites
 
-Before you install <%=vars.product_name %>, ensure that you have installed all required software and prepared your Kubernetes environment as described in [Prerequisites](prepare-k8s.html). Also, ensure that any previous <%=vars.product_name %> installation has been uninstalled as described in [Uninstalling <%=vars.product_name %>](uninstalling.html).
+Before you install {{#include ./product_name.md}}, ensure that you have installed all required software and prepared your Kubernetes environment as described in [Prerequisites](prepare-k8s.html). Also, ensure that any previous {{#include ./product_name.md}} installation has been uninstalled as described in [Uninstalling {{#include ./product_name.md}}](uninstalling.html).
 
 ## Procedure
 
-Follow these steps to download and install the <%=vars.product_name %> container images, and install the Greenplum Operator resource.
+Follow these steps to download and install the {{#include ./product_name.md}} container images, and install the Greenplum Operator resource.
 
-1. Download the <%=vars.product_name %> software from [VMware Tanzu Network](https://network.pivotal.io/products/greenplum-for-kubernetes). The download file has the name: `greenplum-for-kubernetes-<version>.tar.gz`.
+1. Download the {{#include ./product_name.md}} software from [VMware Tanzu Network](https://network.pivotal.io/products/greenplum-for-kubernetes). The download file has the name: `greenplum-for-kubernetes-<version>.tar.gz`.
 
-2. Go to the directory where you downloaded the <%=vars.product_name_long %> distribution, and unpack the downloaded software. For example:
+2. Go to the directory where you downloaded the {{#include ./product_name_long.md}} distribution, and unpack the downloaded software. For example:
 
     ```bash
     $ cd ~/Downloads
@@ -154,7 +154,7 @@ Follow these steps to download and install the <%=vars.product_name %> container
       [ ... ]
     }
     ```
-    See the documentation on the manifest's [workerSelector attribute](operator-reference.html#workerSelector) for more information on how <%=vars.product_name %> handles label selectors.
+    See the documentation on the manifest's [workerSelector attribute](operator-reference.html#workerSelector) for more information on how {{#include ./product_name.md}} handles label selectors.
 
 11. Use `helm` to create a new Greenplum Operator release, specifying the YAML configuration file if you created one. For example, to create a new release with the name "greenplum-operator":
 

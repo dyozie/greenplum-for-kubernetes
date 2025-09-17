@@ -1,10 +1,10 @@
 # Kubernetes Node Configuration
 
-This section describes the Linux kernel configuration requirements for each Kubernetes node that is used in a <%=vars.product_name %> cluster.
+This section describes the Linux kernel configuration requirements for each Kubernetes node that is used in a {{#include ./product_name.md}} cluster.
 
 ## <a id="mem-config"></a>About Memory Overcommit Configuration
 
-Although the <%=vars.product_name %> documentation states that `vm.overcommit_memory` must be set to `2` (no overcommit) for production databases, this setting is not recommended with <%=vars.product_name %>, nor is it possible to configure overcommit in this way for Kubernetes nodes. Kubernetes (`kubelet`) uses `vm.overcommit_memory=1` (always overcommit) on its workers with the assumption that applications often request more memory than they actually touch (read or write).
+Although the {{#include ./product_name.md}} documentation states that `vm.overcommit_memory` must be set to `2` (no overcommit) for production databases, this setting is not recommended with {{#include ./product_name.md}}, nor is it possible to configure overcommit in this way for Kubernetes nodes. Kubernetes (`kubelet`) uses `vm.overcommit_memory=1` (always overcommit) on its workers with the assumption that applications often request more memory than they actually touch (read or write).
 
 The value of `vm.overcommit_memory` does not impact the ACID guarantees of Greenplum Database.
 

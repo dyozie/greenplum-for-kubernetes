@@ -2,11 +2,11 @@
 
 ## <a id='debug'></a>Enabling Debug Logging
 
-By default, <%=vars.product_name_long %> logs `info` level messages. You can obtain more detailed log messages for certain problems by changing the log level to `debug`. Note that changes to the logging level must be applied before the Greenplum Operator is installed.
+By default, {{#include ./product_name_long.md}} logs `info` level messages. You can obtain more detailed log messages for certain problems by changing the log level to `debug`. Note that changes to the logging level must be applied before the Greenplum Operator is installed.
 
 To change the log level:
 
-1. Go to the `operator` subdirectory of your <%=vars.product_name %> software directory. For example:
+1. Go to the `operator` subdirectory of your {{#include ./product_name.md}} software directory. For example:
 
     ``` bash
     $ cd ~/greenplum-for-kubernetes-*/operator
@@ -36,7 +36,7 @@ install: cannot create directory '/sys/fs/cgroup/devices/kubepods': Read-only fi
 
 **Resolution:**
 
-The <%=vars.product_name %> deployment process requires the ability to map the host system's `/sys/fs/cgroup` directory onto each container's `/sys/fs/cgroup`. Ensure that no kernel security module (for example, AppArmor) uses a profile that disallows mounting `/sys/fs/cgroup`.
+The {{#include ./product_name.md}} deployment process requires the ability to map the host system's `/sys/fs/cgroup` directory onto each container's `/sys/fs/cgroup`. Ensure that no kernel security module (for example, AppArmor) uses a profile that disallows mounting `/sys/fs/cgroup`.
 
 ## <a id='nodenotlabeled'></a>Node Not Labeled
 
@@ -224,7 +224,7 @@ After reinstalling the greenplum operator and attempting to create a greenplum c
 error: unable to recognize "workspace/my-gp-instance.yaml": no matches for kind "GreenplumCluster" in version "greenplum.pivotal.io/v1"
 ```
 
-This might happen if you uninstalled the greenplum operator without deleting all previously deployed greenplum cluster resources. To avoid this problem in the future, make sure to follow all the steps from [Uninstalling  <%=vars.product_name_long %>](uninstalling.html)
+This might happen if you uninstalled the greenplum operator without deleting all previously deployed greenplum cluster resources. To avoid this problem in the future, make sure to follow all the steps from [Uninstalling  {{#include ./product_name_long.md}}](uninstalling.html)
 
 **Resolution**
 

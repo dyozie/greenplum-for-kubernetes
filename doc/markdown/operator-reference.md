@@ -66,7 +66,7 @@ $ kubectl config set-context $(kubectl config current-context) --namespace=<NAME
 ### <a id="segment"></a>Segment Configuration
 
 <dt>`masterAndStandby:`, `segments:`</dt>
-<dd>These sections share many of the same properties to configure memory, CPU, and storage for Greenplum segment pods. `masterAndStandby:` settings apply only to both the master and standby master pods. All <%=vars.product_name %> clusters include a standby master. The `segments:` section applies to each primary segment and optional mirror segment pod.</dd>
+<dd>These sections share many of the same properties to configure memory, CPU, and storage for Greenplum segment pods. `masterAndStandby:` settings apply only to both the master and standby master pods. All {{#include ./product_name.md}} clusters include a standby master. The `segments:` section applies to each primary segment and optional mirror segment pod.</dd>
 
 <dt>`standby: <yes or no>`</dt>
 <dd>(Optional) Enables or disables the use of standby when deploying a Greenplum cluster. Defaults to "no" if omitted or left empty. This value cannot be dynamically changed for an existing cluster.</dd>
@@ -162,4 +162,4 @@ See the `workspace/my-greenplum-cluster.yaml` for an example manifest.
 
 ## <a id="seealso"></a>See Also
 
-[Deploying or Redeploying a Greenplum Cluster](deploy-operator.html), [Deleting a Greenplum Cluster](deleting.html), [Installing <%=vars.product_name_long %>](installing.html).
+[Deploying or Redeploying a Greenplum Cluster](deploy-operator.html), [Deleting a Greenplum Cluster](deleting.html), [Installing {{#include ./product_name_long.md}}](installing.html).

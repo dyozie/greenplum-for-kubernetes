@@ -152,11 +152,10 @@
 
                 <div id="content" class="content">
                     <main>
-                        <hr />
-<h2 id="title-deploying-or-redeploying-a-greenplum-cluster"><a class="header" href="#title-deploying-or-redeploying-a-greenplum-cluster">title: Deploying or Redeploying a Greenplum Cluster</a></h2>
+                        <h1 id="deploying-or-redeploying-a-greenplum-cluster"><a class="header" href="#deploying-or-redeploying-a-greenplum-cluster">Deploying or Redeploying a Greenplum Cluster</a></h1>
 <p>This section describes how to use the Greenplum Operator deploy a Greenplum cluster to your Kubernetes system. You can use these instructions either to deploy a brand new cluster (provisioning new, empty Persistent Volume Claims in Kubernetes), or to re-deploy an earlier cluster, re-using existing Persistent Volumes if available.</p>
 <h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
-<p>This procedure requires that you first install the &lt;%=vars.product_name %&gt; docker images and create the Greenplum Operator in your Kubernetes system. See <a href="installing.html">Installing &lt;%=vars.product_name_long %&gt;</a> for more information.</p>
+<p>This procedure requires that you first install the Greenplum docker images and create the Greenplum Operator in your Kubernetes system. See <a href="installing.html">Installing Greenplum for Kubernetes</a> for more information.</p>
 <p>Verify that the Greenplum Operator is installed and running in your system before you continue:</p>
 <pre><code class="language-bash">$ helm list
 </code></pre>
@@ -182,7 +181,7 @@ kube-system   Active    50d
 <h2 id="procedure"><a class="header" href="#procedure">Procedure</a></h2>
 <ol>
 <li>
-<p>Go to the <code>workspace</code> subdirectory where you unpacked the &lt;%=vars.product_name %&gt; distribution for Kubernetes:</p>
+<p>Go to the <code>workspace</code> subdirectory where you unpacked the Greenplum distribution for Kubernetes:</p>
 <pre><code class="language-bash">$ cd ./greenplum-for-kubernetes-*/workspace
 </code></pre>
 </li>
@@ -213,9 +212,9 @@ spec:
 <p>Most non-trivial clusters will require configuration changes to specify additional segments, cpu, memory, <code>pg_hba.conf</code> entries, and Storage Class resources. See <a href="operator-reference.html">Greenplum Database Properties</a> for information about these configuration parameters and change them as necessary before you continue.</p>
 <p><br/>If you want to re-deploy a Greenplum cluster that you previously deployed, simply locate and use the existing configuration file.</p>
 <p><br/>If you want to deploy another Greenplum cluster (in a separate Kubernetes namespace), copy the <code>workspace/my-gp-instance.yaml</code> or a another deployment manifest file, and edit it as necessary to meet your cluster configuration requirements.</p>
-<p>&lt;%=vars.product_name_long %&gt; provides one additional sample manifest file that you can use as a template (copy to the <code>/workspace</code> directory before modifying):</p>
+<p>Greenplum for Kubernetes provides one additional sample manifest file that you can use as a template (copy to the <code>/workspace</code> directory before modifying):</p>
 <ul>
-<li><code>samples/my-gp-with-pxf-instance.yaml</code> contains the minimal configuration for a cluster that includes the Platform Extension Framework (PXF) deployed. PXF provides connectors that enable you to access data stored in sources external to your Greenplum Database deployment. These external sources include Hadoop (HDFS, Hive, HBase), object stores (Azure, Google Cloud Storage, Minio, S3), and SQL databases (via JDBC). See <a href="deploy-pxf.html">Deploying PXF with Greenplum</a> for more information about deploying PXF with &lt;%=vars.product_name %&gt;.</li>
+<li><code>samples/my-gp-with-pxf-instance.yaml</code> contains the minimal configuration for a cluster that includes the Platform Extension Framework (PXF) deployed. PXF provides connectors that enable you to access data stored in sources external to your Greenplum Database deployment. These external sources include Hadoop (HDFS, Hive, HBase), object stores (Azure, Google Cloud Storage, Minio, S3), and SQL databases (via JDBC). See <a href="deploy-pxf.html">Deploying PXF with Greenplum</a> for more information about deploying PXF with Greenplum.</li>
 </ul>
 </li>
 <li>

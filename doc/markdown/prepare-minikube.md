@@ -1,10 +1,10 @@
 # Minikube
 
-This section describes the software and configuration necessary to run <%=vars.product_name %> in Minikube. Using Minikube offers a quick way to demonstrate Greenplum on your local system.
+This section describes the software and configuration necessary to run {{#include ./product_name.md}} in Minikube. Using Minikube offers a quick way to demonstrate Greenplum on your local system.
 
 ## <a id="softwarereq"></a>Required Software
 
-To deploy <%=vars.product_name %> on Minikube, you require the following software:
+To deploy {{#include ./product_name.md}} on Minikube, you require the following software:
 
 <%=partial 'partials/prerequisites-common' %>
 
@@ -30,7 +30,7 @@ version.BuildInfo{Version:"v3.2.1", GitCommit:"fe51cd1e31e6a202cba7dead9552a6d41
 
 ## <a id="starting"></a>Configuring the Minikube Cluster
 
-Follow this procedure to start your local Minikube cluster and configure Docker for installing <%=vars.product_name %>:
+Follow this procedure to start your local Minikube cluster and configure Docker for installing {{#include ./product_name.md}}:
 
 1. Start Docker if it is not already running on your system.
 
@@ -77,4 +77,4 @@ Follow this procedure to start your local Minikube cluster and configure Docker 
     **Note:** To undo this docker setting in the current shell, run `eval "$(docker-machine env -u)"`.
 
 
-At this point, your system is available to install <%=vars.product_name %>. Follow the instructions in [Installing <%=vars.product_name %>](installing.html) to continue.  
+At this point, your system is available to install {{#include ./product_name.md}}. Follow the instructions in [Installing {{#include ./product_name.md}}](installing.html) to continue.  

@@ -152,17 +152,17 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>&lt;% set_title(“About”, product_name_long) %&gt;</p>
-<p>&lt;%=vars.product_name %&gt; utilizes the Kubernetes platform to help you quickly and reliably deploy Greenplum clusters that are tailored for a variety of use cases, such as analytical processing with business intelligence tools or high-performance ETL operations for data scientists. Post-deployment, &lt;%=vars.product_name %&gt; helps you maintain your Greenplum cluster by expanding it to accommodate additional processing requirements or activating standby servers to maintain high availability.</p>
-<p>The &lt;%=vars.product_name %&gt; distribution for Kubernetes provides Docker images with the &lt;%=vars.product_name %&gt; Database software and the Greenplum Operator running on Ubuntu. The Greenplum Operator registers &lt;%=vars.product_name %&gt; as a first-class resource within Kubernetes, and orchestrates the deployment, management, and deletion of Greenplum in Kubernetes, as directed by your requests. In most cases, you simply specify the desired Greenplum configuration in a declarative YAML-formatted file, and provide that file to the Greenplum Operator.</p>
+                        <h1 id="about-greenplum-for-kubernetes"><a class="header" href="#about-greenplum-for-kubernetes">About Greenplum for Kubernetes</a></h1>
+<p>Greenplum utilizes the Kubernetes platform to help you quickly and reliably deploy Greenplum clusters that are tailored for a variety of use cases, such as analytical processing with business intelligence tools or high-performance ETL operations for data scientists. Post-deployment, Greenplum helps you maintain your Greenplum cluster by expanding it to accommodate additional processing requirements or activating standby servers to maintain high availability.</p>
+<p>The Greenplum distribution for Kubernetes provides Docker images with the Greenplum Database software and the Greenplum Operator running on Ubuntu. The Greenplum Operator registers Greenplum as a first-class resource within Kubernetes, and orchestrates the deployment, management, and deletion of Greenplum in Kubernetes, as directed by your requests. In most cases, you simply specify the desired Greenplum configuration in a declarative YAML-formatted file, and provide that file to the Greenplum Operator.</p>
 <h2 id="differences-from-greenplum-deployed-on-hardware-or-vms"><a class="header" href="#differences-from-greenplum-deployed-on-hardware-or-vms"><a id="differences"></a>Differences from Greenplum Deployed on Hardware or VMs</a></h2>
-<p>&lt;%=vars.product_name_long %&gt; is functionally different from the &lt;%=vars.product_name %&gt; Database in other deployment environments:</p>
+<p>Greenplum for Kubernetes is functionally different from the Greenplum Database in other deployment environments:</p>
 <ul>
-<li>Certain features, such as MADlib, that are optional in other deployments are installed automatically with &lt;%=vars.product_name_long %&gt;.</li>
-<li>&lt;%=vars.product_name_long %&gt; uses Resource Group-based resource management by default, compared to other deployment environments that use Resource Queue-based resource management.</li>
-<li>&lt;%=vars.product_name_long %&gt; sets the default value of the <code>gp_resource_group_memory_limit</code> configuration parameter to 1.0, because it operates in an environment with reserved resources that are not shared between multiple primary and mirror segments.</li>
-<li>&lt;%=vars.product_name_long %&gt; does not currently support cluster monitoring with Greenplum Command Center. Use system-level monitoring tools such as Prometheus and Grafana until Greenplum Command Center support is available.</li>
-<li>&lt;%=vars.product_name %&gt; clusters in Kubernetes do not support installing Greenplum extensions that use the <code>.gppkg</code> format (and <code>gppkg</code> utility). Future releases will include these extensions as part of the distribution, as with MADlib.</li>
+<li>Certain features, such as MADlib, that are optional in other deployments are installed automatically with Greenplum for Kubernetes.</li>
+<li>Greenplum for Kubernetes uses Resource Group-based resource management by default, compared to other deployment environments that use Resource Queue-based resource management.</li>
+<li>Greenplum for Kubernetes sets the default value of the <code>gp_resource_group_memory_limit</code> configuration parameter to 1.0, because it operates in an environment with reserved resources that are not shared between multiple primary and mirror segments.</li>
+<li>Greenplum for Kubernetes does not currently support cluster monitoring with Greenplum Command Center. Use system-level monitoring tools such as Prometheus and Grafana until Greenplum Command Center support is available.</li>
+<li>Greenplum clusters in Kubernetes do not support installing Greenplum extensions that use the <code>.gppkg</code> format (and <code>gppkg</code> utility). Future releases will include these extensions as part of the distribution, as with MADlib.</li>
 </ul>
 
                     </main>

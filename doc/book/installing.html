@@ -152,18 +152,18 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>&lt;% set_title(“Installing”, product_name_long) %&gt;</p>
-<p>This topic describes how to install &lt;%=vars.product_name_long %&gt;. The installation process involves loading the &lt;%=vars.product_name %&gt; container images into your container registry, and then using the <code>helm</code> package manager to install the Greenplum Operator resource in Kubernetes. After the Greenplum Operator resource is available, you can interact with it to deploy and manage Greenplum clusters in Kubernetes.</p>
+                        <h1 id="installing-greenplum-for-kubernetes"><a class="header" href="#installing-greenplum-for-kubernetes">Installing Greenplum for Kubernetes</a></h1>
+<p>This topic describes how to install Greenplum for Kubernetes. The installation process involves loading the Greenplum container images into your container registry, and then using the <code>helm</code> package manager to install the Greenplum Operator resource in Kubernetes. After the Greenplum Operator resource is available, you can interact with it to deploy and manage Greenplum clusters in Kubernetes.</p>
 <h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
-<p>Before you install &lt;%=vars.product_name %&gt;, ensure that you have installed all required software and prepared your Kubernetes environment as described in <a href="prepare-k8s.html">Prerequisites</a>. Also, ensure that any previous &lt;%=vars.product_name %&gt; installation has been uninstalled as described in <a href="uninstalling.html">Uninstalling &lt;%=vars.product_name %&gt;</a>.</p>
+<p>Before you install Greenplum, ensure that you have installed all required software and prepared your Kubernetes environment as described in <a href="prepare-k8s.html">Prerequisites</a>. Also, ensure that any previous Greenplum installation has been uninstalled as described in <a href="uninstalling.html">Uninstalling Greenplum</a>.</p>
 <h2 id="procedure"><a class="header" href="#procedure">Procedure</a></h2>
-<p>Follow these steps to download and install the &lt;%=vars.product_name %&gt; container images, and install the Greenplum Operator resource.</p>
+<p>Follow these steps to download and install the Greenplum container images, and install the Greenplum Operator resource.</p>
 <ol>
 <li>
-<p>Download the &lt;%=vars.product_name %&gt; software from <a href="https://network.pivotal.io/products/greenplum-for-kubernetes">VMware Tanzu Network</a>. The download file has the name: <code>greenplum-for-kubernetes-&lt;version&gt;.tar.gz</code>.</p>
+<p>Download the Greenplum software from <a href="https://network.pivotal.io/products/greenplum-for-kubernetes">VMware Tanzu Network</a>. The download file has the name: <code>greenplum-for-kubernetes-&lt;version&gt;.tar.gz</code>.</p>
 </li>
 <li>
-<p>Go to the directory where you downloaded the &lt;%=vars.product_name_long %&gt; distribution, and unpack the downloaded software. For example:</p>
+<p>Go to the directory where you downloaded the Greenplum for Kubernetes distribution, and unpack the downloaded software. For example:</p>
 <pre><code class="language-bash">$ cd ~/Downloads
 $ tar xzf greenplum-for-kubernetes-*.tar.gz
 </code></pre>
@@ -283,7 +283,7 @@ EOF
   [ ... ]
 }
 </code></pre>
-<p>See the documentation on the manifest’s <a href="operator-reference.html#workerSelector">workerSelector attribute</a> for more information on how &lt;%=vars.product_name %&gt; handles label selectors.</p>
+<p>See the documentation on the manifest’s <a href="operator-reference.html#workerSelector">workerSelector attribute</a> for more information on how Greenplum handles label selectors.</p>
 </li>
 <li>
 <p>Use <code>helm</code> to create a new Greenplum Operator release, specifying the YAML configuration file if you created one. For example, to create a new release with the name “greenplum-operator”:</p>

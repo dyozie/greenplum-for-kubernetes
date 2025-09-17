@@ -6,7 +6,7 @@ This section describes how to delete the pods and other resources that are creat
 
 Follow these steps to delete the Greenplum pods, services, and other objects, leaving the Persistent Volumes intact:
 
-1. Navigate to the `workspace` directory of the <%=vars.product_name %> distribution (or to the location of the Kubernetes manifest that you used to deploy the cluster). For example:
+1. Navigate to the `workspace` directory of the {{#include ./product_name.md}} distribution (or to the location of the Kubernetes manifest that you used to deploy the cluster). For example:
 
     ``` bash
     $ cd ./greenplum-for-kubernetes-*/workspace
@@ -18,7 +18,7 @@ Follow these steps to delete the Greenplum pods, services, and other objects, le
     $ kubectl delete -f ./my-gp-instance.yaml --wait=false
     ```
 
-    `kubectl` stops the <%=vars.product_name %> instance and deletes the Kubernetes resources for the Greenplum deployment.
+    `kubectl` stops the {{#include ./product_name.md}} instance and deletes the Kubernetes resources for the Greenplum deployment.
    
     <br/>**Note:** Use the optional `--wait=false` flag to return immediately without waiting for the deletion to complete.
 
@@ -158,4 +158,4 @@ See [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-
 
 ## <a id="deloper"></a>Deleting Greenplum Operator
 
-If you also want to remove the Greenplum Operator, follow the instructions in [Uninstalling <%=vars.product_name_long %>](uninstalling.html).
+If you also want to remove the Greenplum Operator, follow the instructions in [Uninstalling {{#include ./product_name_long.md}}](uninstalling.html).

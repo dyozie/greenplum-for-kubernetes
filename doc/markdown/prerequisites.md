@@ -1,8 +1,8 @@
 #  Tanzu Kubernetes Grid Integrated (TKGI) Edition for Greenplum for Kubernetes (GCP)
 
-This release of <%=vars.product_name_long %> can be deployed with TKGI running on Google Cloud Platform (GCP). Management scripts are provided to help you configure required GCP and Kubernetes resources, as well as to deploy a <%=vars.product_name %> cluster.
+This release of {{#include ./product_name_long.md}} can be deployed with TKGI running on Google Cloud Platform (GCP). Management scripts are provided to help you configure required GCP and Kubernetes resources, as well as to deploy a {{#include ./product_name.md}} cluster.
 
-Follow each of the steps in this section to install required software and configure resources **before** you attempt to deploy <%=vars.product_name %>.
+Follow each of the steps in this section to install required software and configure resources **before** you attempt to deploy {{#include ./product_name.md}}.
 
 ## <a id='pks_install'></a>Step 1: Install VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition
 
@@ -10,7 +10,7 @@ Follow the instructions in [Google Cloud Platform (GCP)](https://docs.vmware.com
 
 ## <a id='client_tool_install'></a>Step 2: Install Client Tools
 
-<%=vars.product_name_long %> provides a number of scripts to automate configuration tasks in Google Cloud Platform, TKGI, and Kubernetes. These scripts require your client system to have a number of tools installed. Follow these steps:
+{{#include ./product_name_long.md}} provides a number of scripts to automate configuration tasks in Google Cloud Platform, TKGI, and Kubernetes. These scripts require your client system to have a number of tools installed. Follow these steps:
 
 1. On MacOS systems, use `homebrew` to install required client system tools:
 
@@ -19,7 +19,7 @@ Follow the instructions in [Google Cloud Platform (GCP)](https://docs.vmware.com
     $ brew cask install docker
     ```
     
-    The above command installs several tools that are required for for the <%=vars.product_name %> scripts:
+    The above command installs several tools that are required for for the {{#include ./product_name.md}} scripts:
     - `jq` - for parsing json on the command line
     - `yq` - for parsing yaml on the command line
     - `helm` - the CLI for the [Helm](https://helm.sh/) package manager for Kubernetes
@@ -40,9 +40,9 @@ Follow the instructions in [Google Cloud Platform (GCP)](https://docs.vmware.com
     $ gcloud config set project <project_name>
     ```
 
-2. As a best practice, create a separate service account to use for deploying <%=vars.product_name %>:
+2. As a best practice, create a separate service account to use for deploying {{#include ./product_name.md}}:
 
-    The <%=vars.product_name %> service account must have the following permissions, which are automatically set by the script:
+    The {{#include ./product_name.md}} service account must have the following permissions, which are automatically set by the script:
     * Compute Viewer
     * Compute Network Admin
     * Storage Object Creator
@@ -145,7 +145,7 @@ Follow these steps to deploy a new TKGI cluster using the firewall rules and loa
 
     This creates a Kubernetes cluster and assigns it to be accessed via the specified load balancer. You can use either an existing Load Balancer or a newly-created one, as described in [Step 5: Set Up the Kubernetes Load Balancer](#load_balancer).
 
-3. Use the `kubectl` command to show the system containers and newly-created nodes available for deploying <%=vars.product_name %>:
+3. Use the `kubectl` command to show the system containers and newly-created nodes available for deploying {{#include ./product_name.md}}:
 
     ```bash
     $ kubectl get pods --namespace kube-system

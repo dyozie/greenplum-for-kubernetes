@@ -4,9 +4,9 @@ To expand a Greenplum cluster, you first use the Greenplum Operator to apply an 
 
 **Note:** You cannot resize a cluster to use a lower number of segments; you must delete and re-create the cluster to reduce the number of segments.
 
-Follow these steps to expand a <%=vars.product_name %> cluster on Kubernetes:
+Follow these steps to expand a {{#include ./product_name.md}} cluster on Kubernetes:
 
-1. Go to the `workspace` subdirectory where you unpacked the <%=vars.product_name %> distribution, or to the directory where you created your Greenplum cluster deployment manifest. For example:
+1. Go to the `workspace` subdirectory where you unpacked the {{#include ./product_name.md}} distribution, or to the directory where you created your Greenplum cluster deployment manifest. For example:
 
     ``` bash
     $ cd ./greenplum-for-kubernetes-*/workspace

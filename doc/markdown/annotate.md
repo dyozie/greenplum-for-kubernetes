@@ -1,6 +1,6 @@
 # Annotating the Greenplum Service
 
-Open Policy Agent (OPA) can be used to annotate Greenplum services as they are deployed, in order to implement policy rules. <%=vars.product_name_long %> provides sample files to deploy a mutating webhook. The webhook uses OPA with a Rego policy file to configure Greenplum services to use an AWS internal load balancer. Annotations are added and modified to the Greenplum services as they are deployed to the target namespace.
+Open Policy Agent (OPA) can be used to annotate Greenplum services as they are deployed, in order to implement policy rules. {{#include ./product_name_long.md}} provides sample files to deploy a mutating webhook. The webhook uses OPA with a Rego policy file to configure Greenplum services to use an AWS internal load balancer. Annotations are added and modified to the Greenplum services as they are deployed to the target namespace.
 
 ## <a id="prereq"></a>Prerequisites
 
@@ -12,7 +12,7 @@ The sample configuration uses a self-signed certificate that is created via a te
 
 Follow these steps to deploy the sample OPA webhook and apply the AWS load balancer annotation rules:
 
-1. Go to the `workspace` subdirectory where you unpacked the <%=vars.product_name %> distribution for Kubernetes:
+1. Go to the `workspace` subdirectory where you unpacked the {{#include ./product_name.md}} distribution for Kubernetes:
 
     ``` bash
     $ cd ./greenplum-for-kubernetes-*/workspace

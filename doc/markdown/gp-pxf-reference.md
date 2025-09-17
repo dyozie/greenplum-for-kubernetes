@@ -1,6 +1,6 @@
 # Greenplum PXF Service Properties
 
-This section describes each of the properties that you can define for a `GreenplumPXFService` configuration in the <%=vars.product_name %> manifest file.
+This section describes each of the properties that you can define for a `GreenplumPXFService` configuration in the {{#include ./product_name.md}} manifest file.
 
 ## <a id="synopsis"></a>Synopsis
 
@@ -90,7 +90,7 @@ With the above labels present in your cluster, you would edit the Greenplum Oper
 <dd><br/>This value cannot be dynamically changed for an existing cluster.  If you update this value, it recreates the Greenplum PXF cluster for the new value to take effect.</dd>
 
 <dt><a id="pxfConf"></a>`pxfConf: <s3Source>`</dt>
-<dd>(Optional.) Specifies an S3 location (endpoint, bucket, and folder) and secrets file to use for downloading an existing PXF configuration for use with a new <%=vars.product_name %> cluster deployment. The Greenplum Operator copies the contents of the S3 location to each Greenplum segment host for use as the `PXF_CONF` directory (`/etc/pxf`). You must ensure that the bucket-folder path contains the complete directory structure and customized files for one or more PXF server configurations. See [Deploying PXF with the Default Configuration](deploy-pxf.html#initialize) for information about deploying Greenplum with a default, initialized PXF configuration directory that you can customize for accessing your data sources.</dd>
+<dd>(Optional.) Specifies an S3 location (endpoint, bucket, and folder) and secrets file to use for downloading an existing PXF configuration for use with a new {{#include ./product_name.md}} cluster deployment. The Greenplum Operator copies the contents of the S3 location to each Greenplum segment host for use as the `PXF_CONF` directory (`/etc/pxf`). You must ensure that the bucket-folder path contains the complete directory structure and customized files for one or more PXF server configurations. See [Deploying PXF with the Default Configuration](deploy-pxf.html#initialize) for information about deploying Greenplum with a default, initialized PXF configuration directory that you can customize for accessing your data sources.</dd>
 
 <dt>`s3Source`</dt>
 <dd>This section contains all of the S3-related attributes required to access the PXF configuration directory.</dd>

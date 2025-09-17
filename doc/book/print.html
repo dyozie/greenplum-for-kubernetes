@@ -1,0 +1,803 @@
+<!DOCTYPE HTML>
+<html lang="en" class="ayu sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Greenplum for Kubernetes Documentation</title>
+        <meta name="robots" content="noindex">
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "ayu" : "ayu";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('ayu')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Greenplum for Kubernetes Documentation</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <p>&lt;% set_title(product_name_long) %&gt;</p>
+<p>Revised November 18, 2020</p>
+<p>This documentation describes how to deploy and use the &lt;%=vars.product_name_long %&gt; distribution.</p>
+<p>Key topics in this &lt;%=vars.product_name %&gt; Documentation include:</p>
+<ul>
+<li><a href="release-notes.html">Release Notes</a></li>
+<li><a href="about.html">About &lt;%=vars.product_name_long %&gt;</a></li>
+<li><a href="installing.html">Installing &lt;%=vars.product_name_long %&gt;</a></li>
+<li><a href="deploy-operator.html">Deploying or Redeploying a Greenplum Cluster</a></li>
+<li><a href="operator-reference.html">Greenplum Operator Manifest File</a></li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><p>&lt;% set_title(product_name_long, “Version”, product_version, “Release Notes”) %&gt;</p>
+<p>&lt;%=vars.product_name_long %&gt; 2.3 is a minor release that introduces new features and bug fixes.</p>
+<p>Refer to the <a href="https://gpdb.docs.pivotal.io">&lt;%=vars.product_name %&gt; Database</a> documentation for detailed information about &lt;%=vars.product_name %&gt; Database.</p>
+<p><strong>Note:</strong> Upgrading or migrating data from &lt;%=vars.product_name %&gt; version 1.x to version 2.x is not supported. You must uninstall &lt;%=vars.product_name %&gt; version 1.x using the instuctions in <a href="uninstalling.html">Uninstalling &lt;%=vars.product_name_long %&gt;</a> before installing version 2.x. Persistent volumes that were created for a version 1.x cluster cannot be used with version 2.x.</p>
+<h2 id="components"><a class="header" href="#components"><a id="component_versions"></a>Components</a></h2>
+<p>&lt;%=vars.product_name_long %&gt; includes the &lt;%=vars.product_name %&gt; Database version identified below:</p>
+<div class="table-wrapper"><table><thead><tr><th>&lt;%=vars.product_name %&gt; Version</th><th>&lt;%=vars.product_name %&gt; Database Version</th></tr></thead><tbody>
+<tr><td>2.3.0</td><td>6.11.1</td></tr>
+<tr><td>2.2.0</td><td>6.10.1</td></tr>
+<tr><td>2.1.0, 2.0.1</td><td>6.8.1</td></tr>
+<tr><td>2.0.0</td><td>6.8.0</td></tr>
+</tbody></table>
+</div>
+<h2 id="supported-platforms"><a class="header" href="#supported-platforms"><a id="supported_platforms"></a>Supported Platforms</a></h2>
+<p>This version of &lt;%=vars.product_name_long %&gt; is supported on the following platforms:</p>
+<ul>
+<li>VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition 1.7.0 (contains Kubernetes 1.16.7)</li>
+<li>Google Kubernetes Engine (GKE) Kubernetes 1.16.7</li>
+<li>Amazon Elastic Kubernetes Service (Amazon EKS) 1.16</li>
+</ul>
+<p>Additional Kubernetes environments, such as Minikube, can be used for testing or demonstration purposes.</p>
+<h2 id="release-230-changes"><a class="header" href="#release-230-changes"><a id="changedfeatures201"></a>Release 2.3.0 Changes</a></h2>
+<p>&lt;%=vars.product_name %&gt; 2.3.0 is a minor release that includes these changes:</p>
+<ul>
+<li>Greenplum Text is now a supported feature.</li>
+<li>Greenplum Command Center installation files are now installed by default with Greenplum for Kubernetes. To use Command Center you must execute the Command Center installation after deploying a new cluster. See <a href="gpcc.html">Using Greenplum Command Center</a>.</li>
+<li><code>gpbackup</code> can back up Greenplum data either to local backup files, or to Minio S3 using the <code>gpbackup</code> S3 plugin. See <a href="https://gpdb.docs.pivotal.io/backup-restore/latest/admin_guide/managing/backup-s3-plugin.html">Using the S3 Storage Plugin with gpbackup and gprestore</a> in the Greenplum Backup and Restore documentation for more information on configuring the plugin.</li>
+</ul>
+<h2 id="known-issues-and-limitations-for-kubernetes-deployments"><a class="header" href="#known-issues-and-limitations-for-kubernetes-deployments"><a id="knownissues"></a>Known Issues and Limitations for Kubernetes Deployments</a></h2>
+<ul>
+<li>Currently &lt;%=vars.product_name_long %&gt; does not support automatic upgrades of Greenplum Text. If you installed an earlier version of Greenplum Text in &lt;%=vars.product_name_long %&gt; and then upgrade to version 2.3, you must manually complete the Greenplum Text upgrade by executing <code>gptext-installsql -c gpadmin &amp;&amp; gptext-installsql gpadmin</code> after the upgraded cluster is fully running.</li>
+<li>The <code>zkManager</code> utility, used for checking the ZooKeeper cluster state and cluster management with Greenplum Text deployments, is not available with &lt;%=vars.product_name_long %&gt;. As a workaround, use <code>kubectl</code> to manage the ZooKeeper cluster.</li>
+<li>If you deploy a cluster with Greenplum Text, the <code>gptext-state</code> utility always throws the warning message: <code>object of type 'NoneType' has no len()</code>. This message can be safely ignored in most cases. However, note that the utility cannot detect if the ZooKeeper cluster is down.</li>
+<li>VMware does not support deployments that have been modified by adding layers to the packaged Docker images, or deployments that reference images other than the Greenplum Operator. VMware does not support changing the contents of the deployed containers and pods in any way.</li>
+<li>Greenplum Database connector functionality is not supported. This includes Greenplum Streaming Server (gpss) and its API, Greenplum-Informatica Connector, Greenplum-Spark Connector, and the Greenplum-Kafka Integration.</li>
+<li>&lt;%=vars.product_name_long %&gt; does not support the built-in SNMP features that are available in &lt;%=vars.product_name %&gt; Database.</li>
+<li>&lt;%=vars.product_name_long %&gt; does not support installing Greenplum extensions that use the <code>.gppkg</code> format (and <code>gppkg</code> utility). Future releases will include these extensions as part of the distribution, as with MADlib.</li>
+<li>The Greenplum Operator does not yet support changing all attribute values of a deployed Greenplum cluster. See <a href="operator-reference.html">Greenplum Operator Manifest File</a> for details.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><p>&lt;% set_title(“About”, product_name_long) %&gt;</p>
+<p>&lt;%=vars.product_name %&gt; utilizes the Kubernetes platform to help you quickly and reliably deploy Greenplum clusters that are tailored for a variety of use cases, such as analytical processing with business intelligence tools or high-performance ETL operations for data scientists. Post-deployment, &lt;%=vars.product_name %&gt; helps you maintain your Greenplum cluster by expanding it to accommodate additional processing requirements or activating standby servers to maintain high availability.</p>
+<p>The &lt;%=vars.product_name %&gt; distribution for Kubernetes provides Docker images with the &lt;%=vars.product_name %&gt; Database software and the Greenplum Operator running on Ubuntu. The Greenplum Operator registers &lt;%=vars.product_name %&gt; as a first-class resource within Kubernetes, and orchestrates the deployment, management, and deletion of Greenplum in Kubernetes, as directed by your requests. In most cases, you simply specify the desired Greenplum configuration in a declarative YAML-formatted file, and provide that file to the Greenplum Operator.</p>
+<h2 id="differences-from-greenplum-deployed-on-hardware-or-vms"><a class="header" href="#differences-from-greenplum-deployed-on-hardware-or-vms"><a id="differences"></a>Differences from Greenplum Deployed on Hardware or VMs</a></h2>
+<p>&lt;%=vars.product_name_long %&gt; is functionally different from the &lt;%=vars.product_name %&gt; Database in other deployment environments:</p>
+<ul>
+<li>Certain features, such as MADlib, that are optional in other deployments are installed automatically with &lt;%=vars.product_name_long %&gt;.</li>
+<li>&lt;%=vars.product_name_long %&gt; uses Resource Group-based resource management by default, compared to other deployment environments that use Resource Queue-based resource management.</li>
+<li>&lt;%=vars.product_name_long %&gt; sets the default value of the <code>gp_resource_group_memory_limit</code> configuration parameter to 1.0, because it operates in an environment with reserved resources that are not shared between multiple primary and mirror segments.</li>
+<li>&lt;%=vars.product_name_long %&gt; does not currently support cluster monitoring with Greenplum Command Center. Use system-level monitoring tools such as Prometheus and Grafana until Greenplum Command Center support is available.</li>
+<li>&lt;%=vars.product_name %&gt; clusters in Kubernetes do not support installing Greenplum extensions that use the <code>.gppkg</code> format (and <code>gppkg</code> utility). Future releases will include these extensions as part of the distribution, as with MADlib.</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><p>&lt;% set_title(“Installing”, product_name_long) %&gt;</p>
+<p>This topic describes how to install &lt;%=vars.product_name_long %&gt;. The installation process involves loading the &lt;%=vars.product_name %&gt; container images into your container registry, and then using the <code>helm</code> package manager to install the Greenplum Operator resource in Kubernetes. After the Greenplum Operator resource is available, you can interact with it to deploy and manage Greenplum clusters in Kubernetes.</p>
+<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
+<p>Before you install &lt;%=vars.product_name %&gt;, ensure that you have installed all required software and prepared your Kubernetes environment as described in <a href="prepare-k8s.html">Prerequisites</a>. Also, ensure that any previous &lt;%=vars.product_name %&gt; installation has been uninstalled as described in <a href="uninstalling.html">Uninstalling &lt;%=vars.product_name %&gt;</a>.</p>
+<h2 id="procedure"><a class="header" href="#procedure">Procedure</a></h2>
+<p>Follow these steps to download and install the &lt;%=vars.product_name %&gt; container images, and install the Greenplum Operator resource.</p>
+<ol>
+<li>
+<p>Download the &lt;%=vars.product_name %&gt; software from <a href="https://network.pivotal.io/products/greenplum-for-kubernetes">VMware Tanzu Network</a>. The download file has the name: <code>greenplum-for-kubernetes-&lt;version&gt;.tar.gz</code>.</p>
+</li>
+<li>
+<p>Go to the directory where you downloaded the &lt;%=vars.product_name_long %&gt; distribution, and unpack the downloaded software. For example:</p>
+<pre><code class="language-bash">$ cd ~/Downloads
+$ tar xzf greenplum-for-kubernetes-*.tar.gz
+</code></pre>
+<p>The above command unpacks the distribution into a new directory named <code>greenplum-for-kubernetes-&lt;version&gt;</code>.</p>
+</li>
+<li>
+<p>Go into the new <code>greenplum-for-kubernetes-&lt;version&gt;</code> directory:</p>
+<pre><code class="language-bash">$ cd ./greenplum-for-kubernetes-*/
+</code></pre>
+</li>
+<li>
+<p><strong>(This step is for Minikube deployments only.)</strong> Ensure that the local docker daemon interacts with the Minikube docker container registry:</p>
+<pre><code class="language-bash">$ eval $(minikube docker-env)
+</code></pre>
+<p><strong>Note:</strong> To undo this docker setting in the current shell, run <code>eval "$(docker-machine env -u)"</code>.</p>
+</li>
+<li>
+<p>Load the Greenplum Database Docker image to the local Docker registry:</p>
+<pre><code class="language-bash">$ docker load -i ./images/greenplum-for-kubernetes
+</code></pre>
+<pre><code class="language-bash">b7f7d2967507: Loading layer [==================================================&gt;]  65.58MB/65.58MB
+a6ebef4a95c3: Loading layer [==================================================&gt;]  991.2kB/991.2kB
+838a37a24627: Loading layer [==================================================&gt;]  15.87kB/15.87kB
+...
+Loaded image: greenplum-for-kubernetes:v2.0.0
+</code></pre>
+</li>
+<li>
+<p>Load the Greenplum Operator Docker image to the Docker registry:</p>
+<pre><code class="language-bash">$ docker load -i ./images/greenplum-operator
+</code></pre>
+<pre><code>99c6db5a9ef4: Loading layer [==================================================&gt;]  40.01MB/40.01MB
+4a8dbd663d0b: Loading layer [==================================================&gt;]  1.143MB/1.143MB
+Loaded image: greenplum-operator:v2.0.0
+</code></pre>
+</li>
+<li>
+<p>Verify that both Docker images are now available:</p>
+<pre><code class="language-bash">$ docker images "greenplum-*"
+</code></pre>
+<pre><code class="language-bash">REPOSITORY                 TAG          IMAGE ID            CREATED             SIZE
+greenplum-operator         v2.0.0       ab4f09ba5cba        22 hours ago        112MB
+greenplum-for-kubernetes   v2.0.0       c508bc4f24f6        22 hours ago        2.33GB
+</code></pre>
+</li>
+<li>
+<p><strong>(Skip this step if you are using local docker images such as on Minikube.)</strong> If you want to push the Greenplum docker images to a different container registry:</p>
+<ol>
+<li>
+<p>Set the project name and image repo name and then use Docker to push the images. For example, to push the images to Google Cloud Registry using the current Google Cloud project name:</p>
+<pre><code class="language-bash">$ gcloud auth configure-docker
+
+$ PROJECT=$(gcloud config list core/project --format='value(core.project)')
+$ IMAGE_REPO="gcr.io/${PROJECT}"
+
+$ GREENPLUM_IMAGE_NAME="${IMAGE_REPO}/greenplum-for-kubernetes:$(cat ./images/greenplum-for-kubernetes-tag)"
+$ docker tag $(cat ./images/greenplum-for-kubernetes-id) ${GREENPLUM_IMAGE_NAME}
+$ docker push ${GREENPLUM_IMAGE_NAME}
+
+$ OPERATOR_IMAGE_NAME="${IMAGE_REPO}/greenplum-operator:$(cat ./images/greenplum-operator-tag)"
+$ docker tag $(cat ./images/greenplum-operator-id) ${OPERATOR_IMAGE_NAME}
+$ docker push ${OPERATOR_IMAGE_NAME}
+</code></pre>
+</li>
+<li>
+<p>Create a docker-registry secret <code>regsecret</code> for pods to be able to fetch images from remote container registries. For example:</p>
+<pre><code class="language-bash"># For GCR
+kubectl create secret  docker-registry  regsecret \
+--docker-server=https://gcr.io \
+--docker-username=_json_key \
+--docker-password="$(cat key.json)"
+
+#For ECR
+TOKEN=`aws ecr --region=$REGION get-authorization-token --output text --query authorizationData[].authorizationToken | base64 -d | cut -d: -f2`
+kubectl create secret docker-registry regsecret \
+--docker-server=https://${ACCOUNT}.dkr.ecr.${REGION}.amazonaws.com \
+--docker-username=AWS \
+--docker-password="${TOKEN}"
+
+#For Harbor
+kubectl create secret docker-registry regsecret \
+--docker-server=${HARBOR_URL} \
+--docker-username=${HARBOR_USER} \
+--docker-password="${HARBOR_PASSWORD}"
+</code></pre>
+<p><strong>Note:</strong> The <code>base64 -d</code> command in the above ECR section assumes you are using the GNU version of <code>base64</code>. If you are using a MacOS system, use the BSD syntax <code>base64 -D</code> instead.</p>
+</li>
+<li>
+<p>Verify the <code>regsecret</code>.</p>
+<pre><code class="language-bash">./workspace/samples/scripts/regsecret-test.bash ${OPERATOR_IMAGE_NAME}
+</code></pre>
+<p>The output of above command should print <code>GREENPLUM-OPERATOR TEST OK</code>
+If this verification fails for Google Cloud Registry, then make sure the <code>key.json</code> file has the <code>roles/storage.objectViewer</code> role.</p>
+</li>
+<li>
+<p>If you pushed the Greenplum Operator and Greenplum Database Docker images to a container registry, create a new YAML file in the <code>workspace subdirectory</code> with two lines to indicate the registry where you pushed the images. For example, if you are using Google Cloud Registry you would add properties similar to:</p>
+<pre><code class="language-bash">cat &lt;&lt;EOF &gt;workspace/operator-values-overrides.yaml
+operatorImageRepository: ${IMAGE_REPO}/greenplum-operator
+greenplumImageRepository: ${IMAGE_REPO}/greenplum-for-kubernetes
+EOF
+</code></pre>
+<p>Be sure to replace the project and repository names with the actual names used in your deployment.</p>
+<p><strong>Note:</strong> If you did not tag the images with a container registry prefix or project name (for example, if you are using your own local Minikube deployment), then you can skip this step.</p>
+</li>
+</ol>
+</li>
+<li>
+<p>(Optional.) If you want to use a non-default logging level (for example, to enable <code>debug</code> logging), then follow the instructions in <a href="troubleshooting.html#debug">Enabling Debug Logging</a>.</p>
+</li>
+<li>
+<p>(Optional.) If you want to specify a node for the operator to run on, first apply a label to the node.</p>
+<pre><code class="language-bash">kubectl label node &lt;node name&gt; &lt;key&gt;=&lt;value&gt;
+</code></pre>
+<p>Then, edit the <code>operator-values-overrides.yaml</code> file to include a matching set of key/value label selectors:</p>
+<pre><code>operatorWorkerSelector: {
+  &lt;key&gt;: "&lt;value&gt;"
+  [ ... ]
+}
+</code></pre>
+<p>See the documentation on the manifest’s <a href="operator-reference.html#workerSelector">workerSelector attribute</a> for more information on how &lt;%=vars.product_name %&gt; handles label selectors.</p>
+</li>
+<li>
+<p>Use <code>helm</code> to create a new Greenplum Operator release, specifying the YAML configuration file if you created one. For example, to create a new release with the name “greenplum-operator”:</p>
+<pre><code class="language-bash">$ helm install greenplum-operator -f workspace/operator-values-overrides.yaml operator/
+</code></pre>
+<p>If you did not create a YAML configuration file (as in the case with Minikube) omit the <code>-f</code> option:</p>
+<pre><code class="language-bash">$ helm install greenplum-operator operator/
+</code></pre>
+<p>Helm begins installing the new release into the Kubernetes namespace specified in the current Kubernetes context. If you want to install into a different namespace, include the <code>--namespace</code> option in the <code>helm</code> command.</p>
+<p><br/>The command displays the following message and concludes with a link to this documentation:</p>
+<pre><code class="language-bash">NAME: greenplum-operator
+LAST DEPLOYED: Wed May 13 09:55:06 2020
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+greenplum-operator has been installed.
+
+Please see documentation at:
+http://greenplum-kubernetes.docs.pivotal.io/
+</code></pre>
+<p>Installing the operator creates a new service account named <code>greenplum-system-operator</code>.  It is for internal use, but it is visible if you use the <code>kubectl get serviceaccount</code> command:</p>
+<pre><code class="language-bash">$ kubectl get serviceaccount
+</code></pre>
+<pre><code class="language-bash">NAME                        SECRETS   AGE
+default                     1         12m
+greenplum-system-operator   1         8m56s
+</code></pre>
+</li>
+<li>
+<p>Use <code>watch kubectl get all</code> to monitor the progress of the deployment. The deployment is complete when the Greenplum Operator pod is in the <code>Running</code> state and the replica set are available. For example:</p>
+<pre><code class="language-bash">$ watch kubectl get all
+</code></pre>
+<pre><code class="language-bash">NAME                                      READY   STATUS    RESTARTS   AGE
+pod/greenplum-operator-6ff95b6b79-kq9vr   1/1     Running   0          24s
+
+NAME                                                            TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/greenplum-validating-webhook-service-6ff95b6b79-kq9vr   ClusterIP   10.106.60.103   &lt;none&gt;        443/TCP   22s
+service/kubernetes                                              ClusterIP   10.96.0.1       &lt;none&gt;        443/TCP   4m14s
+
+NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/greenplum-operator   1/1     1            1           24s
+
+NAME                                            DESIRED   CURRENT   READY   AGE
+replicaset.apps/greenplum-operator-6ff95b6b79   1         1         1       24s
+</code></pre>
+</li>
+<li>
+<p>Check the logs of the operator to ensure that it is running properly.</p>
+<pre><code class="language-bash">$ kubectl logs -l app=greenplum-operator
+</code></pre>
+<pre><code class="language-bash">{"level":"INFO","ts":"2020-05-13T18:17:32.173Z","logger":"controller-runtime.manager","msg":"starting metrics server","path":"/metrics"}
+{"level":"INFO","ts":"2020-05-13T18:17:32.173Z","logger":"admission","msg":"starting greenplum validating admission webhook server"}
+{"level":"INFO","ts":"2020-05-13T18:17:32.273Z","logger":"controller-runtime.controller","msg":"Starting Controller","controller":"greenplumcluster"}
+{"level":"INFO","ts":"2020-05-13T18:17:32.273Z","logger":"controller-runtime.controller","msg":"Starting Controller","controller":"greenplumpxfservice"}
+{"level":"INFO","ts":"2020-05-13T18:17:32.276Z","logger":"admission","msg":"CertificateSigningRequest: created"}
+{"level":"INFO","ts":"2020-05-13T18:17:32.291Z","logger":"admission","msg":"ValidatingWebhookConfiguration: created"}
+{"level":"INFO","ts":"2020-05-13T18:17:32.373Z","logger":"controller-runtime.controller","msg":"Starting workers","controller":"greenplumpxfservice","worker count":1}
+{"level":"INFO","ts":"2020-05-13T18:17:32.373Z","logger":"controller-runtime.controller","msg":"Starting workers","controller":"greenplumcluster","worker count":1}
+</code></pre>
+</li>
+</ol>
+<p>At this point, you can interact with the Greenplum Operator to deploy new Greenplum clusters or manage existing Greenplum clusters. See <a href="using.html">About the Greenplum Operator</a>.</p>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2 id="title-deploying-or-redeploying-a-greenplum-cluster"><a class="header" href="#title-deploying-or-redeploying-a-greenplum-cluster">title: Deploying or Redeploying a Greenplum Cluster</a></h2>
+<p>This section describes how to use the Greenplum Operator deploy a Greenplum cluster to your Kubernetes system. You can use these instructions either to deploy a brand new cluster (provisioning new, empty Persistent Volume Claims in Kubernetes), or to re-deploy an earlier cluster, re-using existing Persistent Volumes if available.</p>
+<h2 id="prerequisites-1"><a class="header" href="#prerequisites-1">Prerequisites</a></h2>
+<p>This procedure requires that you first install the &lt;%=vars.product_name %&gt; docker images and create the Greenplum Operator in your Kubernetes system. See <a href="installing.html">Installing &lt;%=vars.product_name_long %&gt;</a> for more information.</p>
+<p>Verify that the Greenplum Operator is installed and running in your system before you continue:</p>
+<pre><code class="language-bash">$ helm list
+</code></pre>
+<pre><code class="language-bash">NAME              	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART           APP VERSION  
+greenplum-operator	default  	1       	2020-05-13 11:17:30.640971495 -0700 PDT	deployed	operator-1.4.0  v2.0.0
+</code></pre>
+<p>To deploy multiple Greenplum cluster instances, you require multiple namespaces in your Kubernetes environment to target each cluster. If you need to create a new Kubernetes namespace, use the <code>kubectl create namespace</code> command. For example:</p>
+<pre><code class="language-bash">$ kubectl create namespace gpinstance-1
+</code></pre>
+<pre><code class="language-bash">namespace/gpinstance-1 created
+</code></pre>
+<p>Verify that you have a namespace for the new Greenplum cluster instances that you want to deploy. For example:</p>
+<pre><code class="language-bash">$ kubectl get namespaces
+</code></pre>
+<pre><code class="language-bash">NAME          STATUS    AGE
+default       Active    50d
+gpinstance-1  Active    50d 
+gpinstance-2  Active    50d 
+kube-public   Active    50d
+kube-system   Active    50d
+</code></pre>
+<p>In the above output, gpinstance-1 and gpinstance-2 can be used as namespaces for deploying two different Greenplum cluster.</p>
+<h2 id="procedure-1"><a class="header" href="#procedure-1">Procedure</a></h2>
+<ol>
+<li>
+<p>Go to the <code>workspace</code> subdirectory where you unpacked the &lt;%=vars.product_name %&gt; distribution for Kubernetes:</p>
+<pre><code class="language-bash">$ cd ./greenplum-for-kubernetes-*/workspace
+</code></pre>
+</li>
+<li>
+<p>If necessary, create a Kubernetes manifest file to specify the configuration of your Greenplum cluster. A sample file is provided in <code>workspace/my-gp-instance.yaml</code>. <code>my-gp-instance.yaml</code> contains the minimal set of instructions necessary to create a demonstration cluster named “my-greenplum” with a single segment and default storage, memory, and CPU settings:</p>
+<pre><code class="language-yaml">apiVersion: "greenplum.pivotal.io/v1"
+kind: "GreenplumCluster"
+metadata:
+  name: my-greenplum
+spec:
+  masterAndStandby:
+    hostBasedAuthentication: |
+      # host   all   gpadmin   0.0.0.0/0    trust
+    memory: "800Mi"
+    cpu: "0.5"
+    storageClassName: standard
+    storage: 1G
+    workerSelector: {}
+  segments:
+    primarySegmentCount: 1
+    memory: "800Mi"
+    cpu: "0.5"
+    storageClassName: standard
+    storage: 2G
+    workerSelector: {}
+
+</code></pre>
+<p>Most non-trivial clusters will require configuration changes to specify additional segments, cpu, memory, <code>pg_hba.conf</code> entries, and Storage Class resources. See <a href="operator-reference.html">Greenplum Database Properties</a> for information about these configuration parameters and change them as necessary before you continue.</p>
+<p><br/>If you want to re-deploy a Greenplum cluster that you previously deployed, simply locate and use the existing configuration file.</p>
+<p><br/>If you want to deploy another Greenplum cluster (in a separate Kubernetes namespace), copy the <code>workspace/my-gp-instance.yaml</code> or a another deployment manifest file, and edit it as necessary to meet your cluster configuration requirements.</p>
+<p>&lt;%=vars.product_name_long %&gt; provides one additional sample manifest file that you can use as a template (copy to the <code>/workspace</code> directory before modifying):</p>
+<ul>
+<li><code>samples/my-gp-with-pxf-instance.yaml</code> contains the minimal configuration for a cluster that includes the Platform Extension Framework (PXF) deployed. PXF provides connectors that enable you to access data stored in sources external to your Greenplum Database deployment. These external sources include Hadoop (HDFS, Hive, HBase), object stores (Azure, Google Cloud Storage, Minio, S3), and SQL databases (via JDBC). See <a href="deploy-pxf.html">Deploying PXF with Greenplum</a> for more information about deploying PXF with &lt;%=vars.product_name %&gt;.</li>
+</ul>
+</li>
+<li>
+<p>(Optional) If you have specified <code>workerSelector</code> in your manifest file, then you need to apply the specified labels to the nodes that belong in the <code>masterAndStandby</code> and <code>segments</code> pools by using the following command:</p>
+<pre><code class="language-bash">$ kubectl label node &lt;node name&gt; &lt;key&gt;=&lt;value&gt;
+</code></pre>
+</li>
+<li>
+<p>Use <code>kubectl apply</code> command and specify your manifest file to send the deployment request to the Greenplum Operator. For example, to use the sample <code>my-gp-instance.yaml</code> file:</p>
+<pre><code class="language-bash">$ kubectl apply -f ./my-gp-instance.yaml 
+</code></pre>
+<pre><code class="language-bash">greenplumcluster.greenplum.pivotal.io/my-greenplum created
+</code></pre>
+<p>If you are deploying another instance of a Greenplum cluster, specify the Kubernetes namespace where you want to deploy the new cluster. For example, if you previously deployed a cluster in the namespace gpinstance-1, you could deploy a second Greenplum cluster in the gpinstance-2 namespace using the command:</p>
+<pre><code class="language-bash">$ kubectl apply -f ./my-gp-instance.yaml -n gpinstance-2
+</code></pre>
+<pre><code class="language-bash">greenplumcluster.greenplum.pivotal.io/my-greenplum created
+</code></pre>
+<p>The Greenplum Operator deploys the necessary Greenplum resources according to your specification, and also initializes the Greenplum cluster. If there are no existing Persistent Volume Claims for the cluster, new PVCs are created and used for the deployment.  If PVCs for the cluster already exist, they are used as-is with the available data.</p>
+<p><br/>Deploying the cluster also creates a new service account named <code>greenplum-system-pod</code>.  Greenplum pods use this account internally to label their persistent volume claims (PVCs), but it is also visible if you use the <code>kubectl get serviceaccount</code> command:</p>
+<pre><code class="language-bash">$ kubectl get serviceaccount
+</code></pre>
+<pre><code class="language-bash">NAME                        SECRETS   AGE
+default                     1         39m
+greenplum-system-operator   1         36m
+greenplum-system-pod        1         18m
+</code></pre>
+<p><br/>If you enabled <code>antiAffinity</code> in your cluster configuration, individual nodes are labeled with <code>greenplum-affinity-&lt;namespace&gt;-segment=a</code>, <code>greenplum-affinity-&lt;namespace&gt;-segment=b</code>, and/or <code>greenplum-affinity-&lt;namespace&gt;-master=true</code>, as shown below:</p>
+<pre><code class="language-bash">$ kubectl get nodes --show-labels
+NAME                                      STATUS   ROLES    AGE   VERSION   LABELS
+vm-4b50d90e-5e00-411f-5516-588711f0a618   Ready    &lt;none&gt;   11h   v1.16.7   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=custom-1-2048,beta.kubernetes.io/os=linux,bosh.id=3b3a6b47-8a1d-4a82-a06b-5349a241397e,bosh.zone=us-central1-f,failure-domain.beta.kubernetes.io/region=us-central1,failure-domain.beta.kubernetes.io/zone=us-central1-f,greenplum-affinity-default-master=true,greenplum-affinity-default-segment=a,kubernetes.io/hostname=vm-4b50d90e-5e00-411f-5516-588711f0a618,spec.ip=10.0.11.11,worker=my-gp-masters
+vm-50da037c-0c00-46f8-5968-2a51cf17e426   Ready    &lt;none&gt;   11h   v1.16.7   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=custom-1-2048,beta.kubernetes.io/os=linux,bosh.id=e6440a8d-8b75-4a0e-acc9-b210e81d59dc,bosh.zone=us-central1-f,failure-domain.beta.kubernetes.io/region=us-central1,failure-domain.beta.kubernetes.io/zone=us-central1-f,greenplum-affinity-default-master=true,greenplum-affinity-default-segment=b,kubernetes.io/hostname=vm-50da037c-0c00-46f8-5968-2a51cf17e426,spec.ip=10.0.11.16,worker=my-gp-masters
+vm-73e119aa-da79-4686-58df-1e9d7a9eff18   Ready    &lt;none&gt;   11h   v1.16.7   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=custom-1-2048,beta.kubernetes.io/os=linux,bosh.id=7e68ad80-6401-431b-8187-0ffc9c45dd69,bosh.zone=us-central1-f,failure-domain.beta.kubernetes.io/region=us-central1,failure-domain.beta.kubernetes.io/zone=us-central1-f,greenplum-affinity-default-master=true,greenplum-affinity-default-segment=a,kubernetes.io/hostname=vm-73e119aa-da79-4686-58df-1e9d7a9eff18,spec.ip=10.0.11.15,worker=my-gp-segments
+vm-8e43e0c6-6fd5-4bff-5c3a-150cbca76781   Ready    &lt;none&gt;   11h   v1.16.7   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=custom-1-2048,beta.kubernetes.io/os=linux,bosh.id=2bfd5222-96c5-47d7-98c2-52af11ea3854,bosh.zone=us-central1-f,failure-domain.beta.kubernetes.io/region=us-central1,failure-domain.beta.kubernetes.io/zone=us-central1-f,greenplum-affinity-default-master=true,greenplum-affinity-default-segment=b,kubernetes.io/hostname=vm-8e43e0c6-6fd5-4bff-5c3a-150cbca76781,spec.ip=10.0.11.13,worker=my-gp-segments
+vm-cf9fcef9-2557-43ca-43fa-01b21618e9ba   Ready    &lt;none&gt;   11h   v1.16.7   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=custom-1-2048,beta.kubernetes.io/os=linux,bosh.id=5a757d0f-d312-4fee-9c3f-52bd82c225f7,bosh.zone=us-central1-f,failure-domain.beta.kubernetes.io/region=us-central1,failure-domain.beta.kubernetes.io/zone=us-central1-f,greenplum-affinity-default-master=true,greenplum-affinity-default-segment=a,kubernetes.io/hostname=vm-cf9fcef9-2557-43ca-43fa-01b21618e9ba,spec.ip=10.0.11.14,worker=my-gp-segments
+vm-fb806a3c-8198-4608-671e-4659c940d2a4   Ready    &lt;none&gt;   11h   v1.16.7   beta.kubernetes.io/arch=amd64,beta.kubernetes.io/instance-type=custom-1-2048,beta.kubernetes.io/os=linux,bosh.id=18f8435d-be48-4445-b822-e0733ac7eced,bosh.zone=us-central1-f,failure-domain.beta.kubernetes.io/region=us-central1,failure-domain.beta.kubernetes.io/zone=us-central1-f,greenplum-affinity-default-master=true,greenplum-affinity-default-segment=b,kubernetes.io/hostname=vm-fb806a3c-8198-4608-671e-4659c940d2a4,spec.ip=10.0.11.12,worker=my-gp-segments
+</code></pre>
+<p><br/>Do not modify these labels, as they are used by the Operator for enforcing the <code>antiAffinity</code> setting.</p>
+</li>
+<li>
+<p>While the cluster is initializing the status will be <code>Pending</code>:</p>
+<pre><code class="language-bash">$ watch kubectl get all
+</code></pre>
+<pre><code class="language-bash">NAME                                      READY   STATUS    RESTARTS   AGE
+pod/greenplum-operator-6ff95b6b79-kq9vr   1/1     Running   0          20m
+pod/master-0                              1/1     Running   0          2m47s
+pod/segment-a-0                           1/1     Running   0          2m47s
+
+NAME                                                            TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)          AGE
+service/agent                                                   ClusterIP      None             &lt;none&gt;        22/TCP           2m48s
+service/greenplum                                               LoadBalancer   10.102.131.136   &lt;pending&gt;     5432:32753/TCP   2m48s
+service/greenplum-validating-webhook-service-6ff95b6b79-kq9vr   ClusterIP      10.106.60.103    &lt;none&gt;        443/TCP          20m
+service/kubernetes                                              ClusterIP      10.96.0.1        &lt;none&gt;        443/TCP          24m
+
+NAME                                 READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/greenplum-operator   1/1     1            1           20m
+
+NAME                                            DESIRED   CURRENT   READY   AGE
+replicaset.apps/greenplum-operator-6ff95b6b79   1         1         1       20m
+
+NAME                         READY   AGE
+statefulset.apps/master      1/1     2m47s
+statefulset.apps/segment-a   1/1     2m47s
+
+NAME                                                 STATUS    AGE
+greenplumcluster.greenplum.pivotal.io/my-greenplum   Running   2m49s
+</code></pre>
+</li>
+<li>
+<p><em>If you are redeploying a cluster that was configured to use a standby master</em>, wait until all pods reach the <code>Running</code> status. Then connect to the <code>master-0</code> pod and execute the <code>gpstart</code> command manually. For example:</p>
+<pre><code class="language-bash">kubectl exec -it master-0 -- bash -c "source /usr/local/greenplum-db/greenplum_path.sh; gpstart"
+</code></pre>
+</li>
+<li>
+<p>Describe your Greenplum cluster to verify that it was created successfully. The Phase should eventually transition to <code>Running</code>:</p>
+<pre><code class="language-bash">$ kubectl describe greenplumClusters/my-greenplum
+</code></pre>
+<pre><code class="language-bash">Name:         my-greenplum
+Namespace:    default
+Labels:       &lt;none&gt;
+Annotations:  API Version:  greenplum.pivotal.io/v1
+Kind:         GreenplumCluster
+Metadata:
+  Creation Timestamp:  2020-05-13T18:34:54Z
+  Finalizers:
+    stopcluster.greenplumcluster.pivotal.io
+  Generation:        3
+  Resource Version:  2196
+  Self Link:         /apis/greenplum.pivotal.io/v1/namespaces/default/greenplumclusters/my-greenplum
+  UID:               247daddf-b7e3-4479-a175-8c03e53f910f
+Spec:
+  Master And Standby:
+    Cpu:                        0.5
+    Host Based Authentication:  # host   all   gpadmin   0.0.0.0/0   trust
+
+    Memory:              800Mi
+    Storage:             1G
+    Storage Class Name:  standard
+    Worker Selector:
+  Segments:
+    Cpu:                    0.5
+    Memory:                 800Mi
+    Primary Segment Count:  1
+    Storage:                2G
+    Storage Class Name:     standard
+    Worker Selector:
+Status:
+  Instance Image:    greenplum-for-kubernetes:v2.0.0
+  Operator Version:  greenplum-operator:v2.0.0
+  Phase:             Running
+Events:              &lt;none&gt;
+</code></pre>
+<p>If you are deploying a brand new cluster, the Greenplum Operator automatically initializes the Greenplum cluster. The <code>Phase</code> should eventually transition from <code>Pending</code> to <code>Running</code> and the Events should match the output above.</p>
+<p><br/><strong>Note:</strong> If you redeployed a previously-deployed Greenplum cluster, the phase will begin at <code>Pending</code>. The cluster uses its existing Persistent Volume Claims if they are available. In this case, the master and segment data directories will already exist in their former state. The master-0 pod automatically starts the Greenplum Cluster, after which the phase transitions to <code>Running</code>.</p>
+</li>
+<li>
+<p>At this point, you can work with the deployed Greenplum cluster by executing Greenplum utilities from within Kubernetes, or by using a locally-installed tool, such as <code>psql</code>, to access the Greenplum instance running in Kubernetes. For example, to run the <code>psql</code> utility on the <code>master-0</code> pod:</p>
+<pre><code class="language-bash">$ kubectl exec -it master-0 -- bash -c "source /usr/local/greenplum-db/greenplum_path.sh; psql"
+</code></pre>
+<pre><code>psql (9.4.24)
+Type "help" for help.
+</code></pre>
+<pre><code class="language-sql">gpadmin=# select * from gp_segment_configuration;
+</code></pre>
+<pre><code class="language-sql"> dbid | content | role | preferred_role | mode | status | port  |  hostname   |                   address                   |  
+    datadir      
+------+---------+------+----------------+------+--------+-------+-------------+---------------------------------------------+--
+-----------------
+    1 |      -1 | p    | p              | n    | u      |  5432 | master-0    | master-0.agent.default.svc.cluster.local    | /
+greenplum/data-1
+    2 |       0 | p    | p              | n    | u      | 40000 | segment-a-0 | segment-a-0.agent.default.svc.cluster.local | /
+greenplum/data
+(2 rows)
+</code></pre>
+<p>(Enter <code>\q</code> to exit the <code>psql utility</code>.)</p>
+<p>See also <a href="accessing.html">Accessing a Greenplum Cluster in Kubernetes</a>.</p>
+</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><hr />
+<h2 id="title-greenplum-database-properties"><a class="header" href="#title-greenplum-database-properties">title: Greenplum Database Properties</a></h2>
+<p>This section describes each of the properties that you can define in a Greenplum Operator manifest file.</p>
+<h2 id="synopsis"><a class="header" href="#synopsis"><a id="synopsis"></a>Synopsis</a></h2>
+<pre><code class="language-yaml">apiVersion: "greenplum.pivotal.io/v1"
+kind: "GreenplumCluster"
+metadata:
+  name: &lt;string&gt;
+  namespace: &lt;string&gt;
+spec:
+  masterAndStandby:
+    standby: &lt;yes|no&gt;
+    hostBasedAuthentication: |
+      [ host  &lt;database&gt;  &lt;role&gt;  &lt;address&gt;  &lt;authentication-method&gt; ]
+      [ ... ]
+    memory: &lt;memory-limit&gt;
+    cpu: &lt;cpu-limit&gt;
+    storageClassName: &lt;storage-class&gt;
+    storageSize: &lt;size&gt;
+    workerSelector: {
+      &lt;label&gt;: "&lt;value&gt;"
+      [ ... ]
+    }
+    antiAffinity: &lt;yes|no&gt;
+  segments:
+    primarySegmentCount: &lt;int&gt;
+    memory: &lt;memory-limit&gt;
+    cpu: &lt;cpu-limit&gt;
+    storageClassName: &lt;storage-class&gt;
+    storageSize: &lt;size&gt;
+    workerSelector: {
+      &lt;label&gt;: "&lt;value&gt;"
+      [ ... ]
+    }
+    antiAffinity: &lt;yes|no&gt;
+    mirrors: &lt;yes|no&gt;
+  pxf:
+    serviceName: "&lt;pxf-service-name&gt;" 
+</code></pre>
+<h2 id="description"><a class="header" href="#description"><a id="description"></a>Description</a></h2>
+<p>You specify Greenplum cluster configuration properties to the Greenplum Operator via a YAML-formatted manifest file. A sample manifest file is provided in <code>workspace/my-greenplum-cluster.yaml</code>. The current version of the manifest supports configuring the cluster name, number of segments, and the memory, cpu, and storage settings for master and segment pods. See also <a href="deploy-operator.html">Deploying or Redeploying a Greenplum Cluster</a> for information about deploying a new cluster using a manifest file.</p>
+<h2 id="keywords-and-values"><a class="header" href="#keywords-and-values"><a id="keywords"></a>Keywords and Values</a></h2>
+<h3 id="cluster-metadata"><a class="header" href="#cluster-metadata"><a id="metadata"></a>Cluster Metadata</a></h3>
+<dt>`name: <string>`</dt>
+<dd>(Required) Sets the name of the Greenplum cluster instance resources. You can filter the output of `kubectl` commands using this name.  For example, if you set the name to `my-greenplum` then you can use commands like `kubectl get all -l greenplum-cluster=my-greenplum` or `kubectl get pvc -l greenplum-cluster=my-greenplum` to get all resources or PVCs associated with the Greenplum cluster instance, respectively. </dd>
+<dd><br/>This value cannot be dynamically changed for an existing cluster.  If you attempt to change this value and re-apply it to an existing cluster, the Operator will interpret the change as a new deployment and reject it as only one Greenplum cluster instance is allowed per namespace.</dd>
+<dt>`namespace: <string>`</dt>
+<dd>(Optional) Specifies the namespace in which the Greenplum cluster is deployed. If not specified, the current kubectl context's namespace will be used for cluster deployment. To set kubectl's current context to a specific namespace, use the command:
+<pre><code class="language-bash">$ kubectl config set-context $(kubectl config current-context) --namespace=&lt;NAMESPACE&gt;
+</code></pre>
+</dd>
+<dd>This value cannot be dynamically changed for an existing cluster.  To deploy an existing cluster to a different namespace, first delete the cluster instance and then deploy it using the new `namespace` value.</dd>
+<h3 id="segment-configuration"><a class="header" href="#segment-configuration"><a id="segment"></a>Segment Configuration</a></h3>
+<dt>`masterAndStandby:`, `segments:`</dt>
+<dd>These sections share many of the same properties to configure memory, CPU, and storage for Greenplum segment pods. `masterAndStandby:` settings apply only to both the master and standby master pods. All <%=vars.product_name %> clusters include a standby master. The `segments:` section applies to each primary segment and optional mirror segment pod.</dd>
+<dt>`standby: <yes or no>`</dt>
+<dd>(Optional) Enables or disables the use of standby when deploying a Greenplum cluster. Defaults to "no" if omitted or left empty. This value cannot be dynamically changed for an existing cluster.</dd>
+<dd><br/>**Note:** You cannot change this value for an existing cluster unless you first delete both the deployed cluster *and* the PVCs that were created for that cluster. This will result in a new, empty Greenplum cluster. See [Deleting Greenplum Persistent Volume Claims](deleting.html#delpvs).</dd>
+<dd><br/>**Note:** If standby/mirrors is set to "no" (the default), antiAffinity must also be set to "no".</dd>
+<dt>`hostBasedAuthentication:`</dt>
+<dd>(Optional) Entries to add to the `pg_hba.conf` file generated for the Greenplum cluster. Each entry (multiple entries are possible) must include the items `host  <database>  <role>  <address>  <authentication-method>` in that order, to enable a role to access the indicated database (or `all` databases) from the specified CIDR and authentication method. See [Allowing Connections to Greenplum Database](http://gpdb.docs.pivotal.io/5110/admin_guide/client_auth.html#topic2) in the Greenplum Database documentation for more information about `pg_hba.conf` file entries.</dd>
+<dd><br/>This value cannot be dynamically changed for an existing cluster.  The Operator only uses this value to populate the initial `pg_hba.conf` file that is created with a new cluster. You cannot use this property to change the existing generated file; instead, modify it directly on the `master` pod using a text editor. See the section on `Editing the pg_hba.conf File` in [Allowing Connections to Greenplum Database](http://gpdb.docs.pivotal.io/5110/admin_guide/client_auth.html#topic2).</dd>
+<dt>`primarySegmentCount: <int>`</dt>
+<dd>(Required) The number of primary/mirror segment pod pairs to create in the Greenplum cluster.  Segment pods use the naming format `segment-<type>-<number>` where the segment `<type>` is either `a` for primary segments or `b` for mirror segments. Segment numbering starts at zero.  If you omit this property, the Operator will fail to create a Greenplum cluster because it requires at least 1 primary segment.</dd>
+<dd><br/>You can increase this value and re-apply it to an existing cluster, and the Greenplum operator automatically creates the new segment pods and initializes the Greenplum segment instances. You can optionally redistribute existing data to the new segments and/or delete the expansion schema that is created during this process.  See [Expanding a Greenplum Deployment](expanding.html).</dd>
+<dd><br/>**Note:** You cannot decrease this value for an existing cluster unless you first delete both the deployed cluster *and* the PVCs that were created for that cluster. This will result in a new, empty Greenplum cluster. See [Deleting Greenplum Persistent Volume Claims](deleting.html#delpvs).</dd>
+<dt>`memory: <memory-limit>`</dt>
+<dd>(Optional) The amount of memory allocated to a Greenplum pod. This value defines a memory limit; if a pod tries to exceed the limit it is removed and replaced by a new pod. You can specify a suffix to define the memory units (for example, `4.5Gi`.). If omitted or left empty, the pod has no upper bound on the memory resource it can use or inherits the default limit if one is specified in its deployed namespace.  See [Assign Memory Resources to Containers and Pods](https://kubernetes.io/docs/tasks/configure-pod-container/assign-memory-resource) in the Kubernetes documentation for more information. </dd>
+<dd><br/>This value cannot be dynamically changed for an existing cluster.  If you attempt to make changes to this value and re-apply it to an existing cluster, the change will be rejected.  If you wish to update this value, you must delete the existing cluster and recreate the cluster for the new value to take effect. </dd>
+<dd><br/>**Note:** If you do not want to specify a memory limit, comment-out or remove the `memory:` keyword from the YAML file, or specify an empty string for its value (`memory: ""`). If the keyword appears in the YAML file, you must assign a valid string value to it.</dd>
+<dt>`cpu: <cpu-limit>`</dt>
+<dd>(Optional) The amount of CPU resources allocated to a Greenplum pod, specified as a Kubernetes CPU unit (for example, `cpu: "1.2"`). If omitted or left empty, the pod has no upper bound on the CPU resource it can use or inherits the default limit if one is specified in its deployed namespace.  See [Assign CPU Resources to Containers and Pods](https://kubernetes.io/docs/tasks/configure-pod-container/assign-cpu-resource/) in the Kubernetes documentation for more information.</dd>
+<dd><br/>This value cannot be dynamically changed for an existing cluster.  If you attempt to make changes to this value and re-apply it to an existing cluster, the change will be rejected.  If you wish to update this value, you must delete the existing cluster and recreate the cluster for the new value to take effect.</dd>
+<dd><br/>**Note:** If you do not want to specify a cpu limit, comment-out or remove the `cpu:` keyword from the YAML file, or specify an empty string for its value (`cpu: ""`). If the keyword appears in the YAML file, you must assign a valid string value to it.</dd>
+<dt>`storageClassName: <storage-class>`</dt>
+<dd>(Required) The Storage Class name to use for dynamically provisioning Persistent Volumes (PVs) for a Greenplum pod. If the PVs already exist, either from a previous deployment of the Greenplum instance or because you manually provisioned the PVs, then the Greenplum Operator uses the existing PVs. You can configure the Storage Class according to your performance needs. See [Storage Classes](https://kubernetes.io/docs/concepts/storage/storage-classes/) in the Kubernetes documentation to understand the different configuration options.</dd>
+<dd><br/>For best performance, use persistent volumes that are backed by a local SSD with the XFS filesystem, using `readahead` cache for best performance. Use the mount options `rw,nodev,noatime,nobarrier,inode64` to mount the volume. See [Creating Local Persistent Volumes for Greenplum](create-local-pv.html) for information about manually provisioning local persistent volumes. See [Optimizing Persistent Disk and Local SSD Performance](https://cloud.google.com/compute/docs/disks/performance) in the Google Cloud documentation for information about the performance characteristics of different storage types.</dd>
+<dd><br/>You cannot change this value for an existing cluster unless you first delete both the deployed cluster *and* the PVCs that were created for that cluster. See [Deleting Greenplum Persistent Volume Claims](deleting.html#delpvs).</dd>
+<dt>`storageSize: <size>`</dt>
+<dd>(Required) The storage size of the Persistent Volume Claim (PVC) for a Greenplum pod. Specify a suffix for the units (for example: `100G`, `1T`).</dd>
+<dd><br/>You cannot change this value for an existing cluster unless you first delete both the deployed cluster *and* the PVCs that were created for that cluster. This will result in a new, empty Greenplum cluster. See [Deleting Greenplum Persistent Volume Claims](deleting.html#delpvs).</dd>
+<dt><a id="workerSelector"></a>`workerSelector: <map of key-value pairs>`</dt>
+<dd>(Optional) One or more [selector labels](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/) to use for choosing Greenplum pods. Specify one or more label-value pairs to constrain Greenplum pods to nodes having the matching labels. Define the selector labels as you would for a pod's `nodeSelector` attribute. You can define the `workerSelector` attribute for Greenplum master and standby pods and/or for segment pods. If a `workerSelector` is not desired, remove the `workerSelector` attribute from the manifest file. </dd>
+<dd><br/>For example, consider the case where you assign the label `gpdb-worker=master` to one or more pods using the command:
+<pre><code class="language-bash">$ kubectl label node &lt;node_name&gt; gpdb-worker=master
+</code></pre>
+<p>Similarly, pods reserved for Greenplum segments might be assigned the <code>gpdb-worker=segments</code> label:</p>
+<pre><code class="language-bash">$ kubectl label node &lt;node_name&gt; gpdb-worker=segments
+</code></pre>
+<p>With the above labels present in your cluster, you would edit the Greenplum Operator manifest file to specify the same key-value pairs in the <code>workerSelector</code> attribute. This shows the relevant excerpt from the manifest file:</p>
+<pre><code class="language-yaml">  masterAndStandby:
+    storageClassName: gpdb-storage
+    storageSize: 5G
+    workerSelector: {
+      gpdb-worker: "master"
+    }
+  segments:
+    primarySegmentCount: 6
+    storageClassName: gpdb-storage
+    storageSize: 50G
+    workerSelector: {
+      gpdb-worker: "segments"
+    }
+</code></pre>
+</dd>
+<dd><br/>This value cannot be dynamically changed for an existing cluster.  If you want to update this value, you must first delete the existing cluster and then recreate the cluster for the new value to take effect.</dd>
+<dt><a id="antiAffinity"></a>`antiAffinity: <yes or no>`</dt>
+<dd>(Optional) Enables or disables the anti-affinity property when deploying a Greenplum cluster with mirror segments. Specifying "yes" means that the Operator guarantees scheduling a mirror segment to a different worker node than its corresponding primary segment (or similarly for master and standby).  If anti-affinity cannot be achieved, then the Operator aborts the Greenplum cluster deployment.  Specifying "no" means that the Operator uses the native Kubernetes system scheduler to schedule primary or mirror segments based on available worker nodes indiscriminately (similarly for master and standby).  Defaults to "no" if omitted or left empty. </dd>
+<dd><br/><b>Notes:</b></dd>
+<dd><ul>
+  <li>If you are using virtual machines, always ensure that there is one Kubernetes worker per server for to ensure high availability.</li>
+  <li>Set <code>antiAffinity</code> to "yes" when mirroring is enabled unless the deployment is to a single Kubernetes worker node.</li>
+  <li>The <code>antiAffinity</code> values for <code>masterAndStandby</code> and <code>segments</code> must be the same. Otherwise, the cluster will fail to deploy.</li>
+</ul></dd>
+<dd><br/>This value cannot be dynamically changed for an existing cluster.  If you wish to update this value, you must delete the existing cluster and recreate the cluster for the new value to take effect.</dd>
+<dt>`mirrors: <yes or no>`</dt>
+<dd>(Optional) Enables or disables the use of segment mirroring when deploying a Greenplum cluster. Defaults to "no" if omitted or left empty. This value cannot be dynamically changed for an existing cluster.</dd>
+<dd><br/>**Note:** You cannot change this value for an existing cluster unless you first delete both the deployed cluster *and* the PVCs that were created for that cluster. This will result in a new, empty Greenplum cluster. See [Deleting Greenplum Persistent Volume Claims](deleting.html#delpvs).</dd>
+<dd><br/>**Note:** If standby/mirrors is set to "no", antiAffinity must also be set to "no" (the default).</dd>
+<h3 id="pxf-configuration"><a class="header" href="#pxf-configuration"><a id="pxf"></a>PXF Configuration</a></h3>
+<dt>`pxf.serviceName: "<pxf_service_name>"`</dt>
+<dd>(Optional) Specifies the name of the Greenplum PXF service to which this GreenplumCluster connects. If you include a `GreenplumPXFService` configuration in your manifest file, specify its name here. As a best practice, keep the PXF service configuration properties in the same manifest file as Greenplum Database, as shown in the `workspace/samples/my-gp-with-pxf-instance.yaml` file. This simplifies upgrades or changes to the related service objects. When `pxf.serviceName` is set, the PXF extension is automatically created in the `gpadmin` database.</dd>
+<dd>See [PXF Service Properties](gp-pxf-reference.html) for information about the properties used to configure the PXF service.</dd>
+<h2 id="examples"><a class="header" href="#examples"><a id="examples"></a>Examples</a></h2>
+<p>See the <code>workspace/my-greenplum-cluster.yaml</code> for an example manifest.</p>
+<h2 id="see-also"><a class="header" href="#see-also"><a id="seealso"></a>See Also</a></h2>
+<p><a href="deploy-operator.html">Deploying or Redeploying a Greenplum Cluster</a>, <a href="deleting.html">Deleting a Greenplum Cluster</a>, <a href="installing.html">Installing &lt;%=vars.product_name_long %&gt;</a>.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+        <script>
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+
+    </div>
+    </body>
+</html>

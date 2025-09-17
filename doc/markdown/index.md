@@ -1,4 +1,4 @@
-<% set_title(product_name_long) %>
+# Greenplum for Kubernetes
 
 Revised November 18, 2020
 

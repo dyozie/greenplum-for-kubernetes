@@ -1,4 +1,4 @@
-<% set_title("About", product_name_long) %>
+# About Greenplum for Kubernetes
 
 <%=vars.product_name %> utilizes the Kubernetes platform to help you quickly and reliably deploy Greenplum clusters that are tailored for a variety of use cases, such as analytical processing with business intelligence tools or high-performance ETL operations for data scientists. Post-deployment, <%=vars.product_name %> helps you maintain your Greenplum cluster by expanding it to accommodate additional processing requirements or activating standby servers to maintain high availability.  
 

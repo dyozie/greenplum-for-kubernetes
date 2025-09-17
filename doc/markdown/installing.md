@@ -1,4 +1,4 @@
-<% set_title("Installing", product_name_long) %>
+# Installing Greenplum for Kubernetes
 
 This topic describes how to install <%=vars.product_name_long %>. The installation process involves loading the <%=vars.product_name %> container images into your container registry, and then using the `helm` package manager to install the Greenplum Operator resource in Kubernetes. After the Greenplum Operator resource is available, you can interact with it to deploy and manage Greenplum clusters in Kubernetes.
 

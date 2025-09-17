@@ -6,7 +6,23 @@ Follow this procedure to deploy {{#include ./product_name.md}} to VMware Tanzu K
 
 To deploy {{#include ./product_name.md}} on VMware Tanzu Kubernetes Grid Integrated Edition, you require the following software:
 
-<%=partial 'partials/prerequisites-common' %>
+* `kubectl` command-line utility. Install the version of `kubectl` that is distributed with VMware Tanzu Kubernetes Gri\
+d Integrated (TKGI) Edition, even if you are deploying Greenplum to Minikube. See [Installing the Kuberenetes CLI](http\
+s://docs.pivotal.io/runtimes/pks/1-3/installing-kubectl-cli.html) in the VMware Tanzu Kubernetes Grid Integrated (TKGI)\
+ Edition documentation for instructions.
+
+* Docker. Install a recent version of [Docker](https://www.docker.com/community-edition) to your machine, and start Doc\
+ker.
+
+* Helm package manager utility version 3.3 or later. Follow the instructions at [Kubernetes Helm](https://github.com/he\
+lm/helm) to install `helm`.
+
+* VMware Tanzu Greenplum for Kubernetes requires the ability to map the host system's `/sys/fs/cgroup` directory onto e\
+ach container's `/sys/fs/cgroup`. Ensure that no kernel security module (for example, AppArmor) uses a profile that dis\
+allows mounting `/sys/fs/cgroup`.
+
+* The `watch` command-line utility is used to monitor the process of new deployments. If necessary, use your operating \
+system package management utility to install this utility (for example, `brew install watch` on MacOS platforms).
 
 * VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition 1.7.0 (contains Kubernetes 1.16.7)
 
@@ -20,8 +36,32 @@ In the TKGI tile under **Kubernetes Cloud Provider**, ensure that the service ac
 
 ## <a id="getkey"></a>Obtaining the Service Account Key
 
-<%=partial 'partials/prerequisites-key-json' %>
+Obtain a Kubernetes service account key (a `key.json` file) for an account that has read access (`storage.objectViewer` role) to the Google Cloud Registry. You will need to identify this file in your configuration to pull VMware Tanzu Greenplum for Kubernetes docker images from the remote registry. For example:
 
+1. If necessary, create a new service account to use for VMware Tanzu Greenplum for Kubernetes. These example commands create a new account named `greenplum-image-pull` in your current GCP project:
+
+    ``` bash
+    $ export GCP_PROJECT=$(gcloud config get-value core/project)
+    
+    $ gcloud iam service-accounts create greenplum-image-pull
+    ```
+
+2. Assign the required `storage.objectViewer` role to the new account:
+
+    ``` bash
+    $ gcloud projects add-iam-policy-binding $GCP_PROJECT \
+        --member serviceAccount:greenplum-image-pull@$GCP_PROJECT.iam.gserviceaccount.com \
+        --role roles/storage.objectViewer
+    ```
+
+3. Create the key for the account:
+
+    ``` bash
+    $ gcloud iam service-accounts keys create \
+        --iam-account "greenplum-image-pull@$GCP_PROJECT.iam.gserviceaccount.com" \
+        ~/key.json
+    ```
+    
 Before you attempt to deploy Greenplum, ensure that the target cluster is available. Execute the following command to make sure that the target cluster displays in the output:
 
 ```bash

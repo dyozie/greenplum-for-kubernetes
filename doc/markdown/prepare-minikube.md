@@ -6,7 +6,15 @@ This section describes the software and configuration necessary to run {{#includ
 
 To deploy {{#include ./product_name.md}} on Minikube, you require the following software:
 
-<%=partial 'partials/prerequisites-common' %>
+* `kubectl` command-line utility. Install the version of `kubectl` that is distributed with VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition, even if you are deploying Greenplum to Minikube. See [Installing the Kuberenetes CLI](https://docs.pivotal.io/runtimes/pks/1-3/installing-kubectl-cli.html) in the VMware Tanzu Kubernetes Grid Integrated (TKGI) Edition documentation for instructions.
+
+* Docker. Install a recent version of [Docker](https://www.docker.com/community-edition) to your machine, and start Docker.
+
+* Helm package manager utility version 3.3 or later. Follow the instructions at [Kubernetes Helm](https://github.com/helm/helm) to install `helm`.
+
+* VMware Tanzu Greenplum for Kubernetes requires the ability to map the host system's `/sys/fs/cgroup` directory onto each container's `/sys/fs/cgroup`. Ensure that no kernel security module (for example, AppArmor) uses a profile that disallows mounting `/sys/fs/cgroup`.
+
+* The `watch` command-line utility is used to monitor the process of new deployments. If necessary, use your operating system package management utility to install this utility (for example, `brew install watch` on MacOS platforms).
 
 * Minikube. See the [Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) documentation to install the latest version of Minikube. As part of the Minikube installation you must install a compatible hypervisor to your system (if one is not already available) as well as a corresponding Minikube driver for the hypervisor. For example, on MacOS systems you can use the built-in Hyperkit hypervisor by installing the Minikube [Hyperkit driver](https://github.com/kubernetes/minikube/blob/master/docs/drivers.md#hyperkit-driver).
 

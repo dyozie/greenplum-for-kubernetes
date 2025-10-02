@@ -1,0 +1,27 @@
+[book]
+authors = ["David Yozie"]
+language = "en"
+multilingual = false
+src = "markdown"
+title = "Greenplum for Kubernetes Documentation"
+
+[build]
+build-dir = "book"
+create-missing = false
+use-default-preprocessors = true
+
+[output.html]
+default-theme = "ayu"
+preferred-dark-theme = "ayu"
+smart-punctuation = true
+no-section-label = true
+
+[output.html.fold]
+enable = true    
+level = 0
+
+[output.html.print]
+enable=true
+
+#[output.pdf]
+generate-document-outline = true
